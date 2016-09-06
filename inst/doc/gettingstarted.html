@@ -12,7 +12,7 @@
 
 <meta name="author" content="Alexander Jordan, Fabian Krüger, Sebastian Lerch" />
 
-<meta name="date" content="2016-07-05" />
+<meta name="date" content="2016-09-06" />
 
 <title>R package scoringRules: Getting started</title>
 
@@ -70,14 +70,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h1 class="title toc-ignore">R package scoringRules: Getting started</h1>
 <h4 class="author"><em>Alexander Jordan, Fabian Krüger, Sebastian Lerch</em></h4>
-<h4 class="date"><em>2016-07-05</em></h4>
+<h4 class="date"><em>2016-09-06</em></h4>
 
 
 
 <div id="background" class="section level1">
 <h1>Background</h1>
 <p>Forecasting a continuous random variable, such as temperature (in degrees Celsius) or the inflation rate (in percent) is important in many situations. Since forecasts are usually surrounded by uncertainty, it makes sense to state forecast distributions, rather than point forecasts. The <strong>scoringRules</strong> package offers mathematical tools to evaluate a forecast distribution, <span class="math inline">\(F\)</span>, after an outcome <span class="math inline">\(y\)</span> has realized. To this end, we use scoring rules which assign a penalty score <span class="math inline">\(S(y, F)\)</span> to the realization/forecast pair; a smaller score corresponds to a better forecast. See Gneiting and Katzfuss (‘Probabilistic Forecasting’, <em>Annual Review of Statistics and Its Application</em>, 2014) for an introduction to the relevant statistical literature.</p>
-<p><strong>scoringRules</strong> supports two types of forecast distributions, <span class="math inline">\(F\)</span>: Distributions given by a parametric family (such as Normal or Gamma), and distributions given by a simulated sample. Furthermore, the package covers the two most popular scoring rules <span class="math inline">\(S\)</span>: The logarithmic score (<code>logs</code>), given by <span class="math display">\[\text{logs}(y, F) = \log f(y),\]</span> where <span class="math inline">\(f\)</span> is the density conforming to <span class="math inline">\(F\)</span>, and the continuous ranked probability score (<code>crps</code>), given by <span class="math display">\[
+<p><strong>scoringRules</strong> supports two types of forecast distributions, <span class="math inline">\(F\)</span>: Distributions given by a parametric family (such as Normal or Gamma), and distributions given by a simulated sample. Furthermore, the package covers the two most popular scoring rules <span class="math inline">\(S\)</span>: The logarithmic score (<code>logs</code>), given by <span class="math display">\[\text{logs}(y, F) = -\log f(y),\]</span> where <span class="math inline">\(f\)</span> is the density conforming to <span class="math inline">\(F\)</span>, and the continuous ranked probability score (<code>crps</code>), given by <span class="math display">\[
 \text{crps}(y, F) = \int_{-\infty}^\infty (F(z) - \mathbf{1}(y \le z))^2 dz,
 \]</span> where <span class="math inline">\(\mathbf{1}(A)\)</span> is the indicator function of the event <span class="math inline">\(A\)</span>. The <code>logs</code> is typically easy to compute, and we include it mainly for reference purposes. By contrast, the <code>crps</code> can be very tricky to compute analytically, and cumbersome to approximate numerically. The <strong>scoringRules</strong> package implements several new methods to tackle this challenge. Specifically, we include many previously unknown analytical expressions, and incorporate recent findings on how to best compute the <code>crps</code> of a simulated forecast distribution.</p>
 </div>

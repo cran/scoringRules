@@ -3,6 +3,8 @@
 \alias{fgev}
 \alias{fgpd}
 \alias{fnorm}
+\keyword{distributions}
+\author{Alexander Jordan}
 \title{
 Supplementary distributions (not in base R) with variable support.
 }
@@ -37,4 +39,3 @@ Sometimes truncated or censored versions of the normal distribution are used to 
 
 }
 \seealso{The documentation for \link{crps} contains the full list of distributions supported by scoringRules (includes the ones documented here, as well as many others).}
-\keyword{distributions}

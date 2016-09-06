@@ -1,6 +1,8 @@
 \name{Supplementary distributions: Positive real line}
 \alias{fllapl}
 \alias{fllogis}
+\keyword{distributions}
+\author{Alexander Jordan}
 \title{
 Supplementary distributions (not in base R) supported on the positive real line.
 }
@@ -21,4 +23,3 @@ fllogis(x, locationlog, scalelog)
 To be added.
 }
 \seealso{The documentation for \link{crps} contains the full list of distributions supported by scoringRules (includes the ones documented here, as well as many others).}
-\keyword{distributions}

@@ -1,6 +1,8 @@
 \name{sample}
 \alias{crps_sample}
 \alias{logs_sample}
+\keyword{crps}
+\keyword{logs}
 \title{
 Scoring Rules for Simulated Forecast Distributions
 }
@@ -29,7 +31,7 @@ logs_sample(y, dat, bw = NULL, show_messages = TRUE)
 
 \emph{Evaluating simulation based forecast distributions:}
 
-Krueger, F., S. Lerch, T.L. Thorarinsdottir and T. Gneiting (2016), `Probabilistic forecasting and comparative model assessment based on MCMC output', working paper, Heidelberg Institute for Theoretical Studies, \emph{in preparation}.
+Krueger, F., S. Lerch, T.L. Thorarinsdottir and T. Gneiting (2016), `Probabilistic forecasting and comparative model assessment based on Markov Chain Monte Carlo output', working paper, Heidelberg Institute for Theoretical Studies, available at \url{http://arxiv.org/abs/1608.06802}.
 
 \emph{Empirical quantile decomposition of the CRPS:}
 
@@ -56,7 +58,3 @@ logs_sample(y = obs, dat = sample)
 crps(y = obs, family = "normal", mean = 0, sd = 1) 
 logs(y = obs, family = "normal", mean = 0, sd = 1)
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{crps}
-\keyword{logs}
