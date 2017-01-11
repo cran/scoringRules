@@ -77,13 +77,15 @@ The parameters supplied to each of the functions are numeric vectors:
     \itemize{
       \item \code{"exponential"} or \code{"exp"}: \code{rate} (positive rate parameter); see \link{Exponential}
       \item \code{"gamma"}: \code{shape} (positive shape parameter), \code{rate} (positive rate parameter), \code{scale} (alternative to \code{rate}); see \link{GammaDist}
-      \item \code{"log-laplace"} or \code{"llapl"}: \code{meanlog} (real-valued location parameter), \code{sdlog} (positive scale parameter); see \link{fllapl}
-      \item \code{"log-logistic"} or \code{"llogis"}: \code{meanlog} (real-valued location parameter), \code{sdlog} (positive scale parameter); see \link{fllogis}
-      \item \code{"log-normal"} or \code{"lnorm"}: \code{meanlog} (real-valued location parameter), \code{sdlog} (positive scale parameter); see \link{Lognormal}
+      \item \code{"log-laplace"} or \code{"llapl"}: \code{locationlog} (real-valued location parameter), \code{scalelog} (positive scale parameter); see \link{fllapl}
+      \item \code{"log-logistic"} or \code{"llogis"}: \code{locationlog} (real-valued location parameter), \code{scalelog} (positive scale parameter); see \link{fllogis}
+      \item \code{"log-normal"} or \code{"lnorm"}: \code{locationlog} (real-valued location parameter), \code{scalelog} (positive scale parameter); see \link{Lognormal}
     }
 \item Distributions  for random variables with variable support:
     \itemize{
       \item \code{"normal"} or \code{"norm"}: \code{location} (location parameter), \code{scale} (scale parameter), \code{lower} (real-valued truncation parameter, lower bound), \code{upper} (real-valued truncation parameter, upper bound), \code{lmass} (point mass in lower bound, string "cens" or "trunc"), \code{umass} (point mass in upper bound, string "cens" or "trunc"); see \link{fnorm}
+      \item \code{"t"}: \code{location} (location parameter), \code{scale} (scale parameter), \code{df} (degrees of freedom), \code{lower} (real-valued truncation parameter, lower bound), \code{upper} (real-valued truncation parameter, upper bound), \code{lmass} (point mass in lower bound, string "cens" or "trunc"), \code{umass} (point mass in upper bound, string "cens" or "trunc"); see \link{ft}
+      \item \code{"logistic"} or \code{"logis"}: \code{location} (location parameter), \code{scale} (scale parameter), \code{lower} (real-valued truncation parameter, lower bound), \code{upper} (real-valued truncation parameter, upper bound), \code{lmass} (point mass in lower bound, string "cens" or "trunc"), \code{umass} (point mass in upper bound, string "cens" or "trunc"); see \link{flogis} 
       \item \code{"exponential"} or \code{"exp"}: \code{location} (real-valued location parameter), \code{scale} (positive scale parameter), \code{mass} (point mass in \code{location}); see \link{fexp}
       \item \code{"gpd"}: \code{location} (real-valued location parameter), \code{scale} (positive scale parameter), \code{shape} (real-valued shape parameter), \code{mass} (point mass in \code{location}); see \link{fgpd}
       \item \code{"gev"}: \code{location} (real-valued location parameter), \code{scale} (positive scale parameter), \code{shape} (real-valued shape parameter); see \link{fgev}
