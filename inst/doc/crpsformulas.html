@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="author" content="Alexander Jordan" />
+
+<meta name="date" content="2017-08-10" />
+
+<title>Closed form expressions for the continuous ranked probability score</title>
+
+
+
+
+
+
+<link href="data:text/css;charset=utf-8,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23header%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%20code%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Closed form expressions for the continuous ranked probability score</h1>
+<h4 class="author"><em>Alexander Jordan</em></h4>
+<h4 class="date"><em>2017-08-10</em></h4>
+
+
+<div id="TOC">
+<ul>
+<li><a href="#introduction"><span class="toc-section-number">1</span> Introduction</a></li>
+<li><a href="#distributions-for-variables-on-the-real-line"><span class="toc-section-number">2</span> Distributions for variables on the real line</a><ul>
+<li><a href="#Laplace"><span class="toc-section-number">2.1</span> Laplace distribution (<code>&quot;lapl&quot;</code>)</a></li>
+<li><a href="#Logistic"><span class="toc-section-number">2.2</span> Logistic distribution (<code>&quot;logis&quot;</code>)</a></li>
+<li><a href="#Normal"><span class="toc-section-number">2.3</span> Normal distribution (<code>&quot;norm&quot;</code>)</a></li>
+<li><a href="#Mixnorm"><span class="toc-section-number">2.4</span> Mixture of normal distributions (<code>&quot;mixnorm&quot;</code>)</a></li>
+<li><a href="#Student"><span class="toc-section-number">2.5</span> Student’s <span class="math inline">\(t\)</span>-distribution (<code>&quot;t&quot;</code>)</a></li>
+<li><a href="#tpexp"><span class="toc-section-number">2.6</span> Two-piece exponential distribution (<code>&quot;2pexp&quot;</code>)</a></li>
+<li><a href="#tpnorm"><span class="toc-section-number">2.7</span> Two-piece normal distribution (<code>&quot;2pnorm&quot;</code>)</a></li>
+</ul></li>
+<li><a href="#distributions-for-non-negative-variables"><span class="toc-section-number">3</span> Distributions for non-negative variables</a><ul>
+<li><a href="#Exponential"><span class="toc-section-number">3.1</span> Exponential distribution (<code>&quot;exp&quot;</code>)</a></li>
+<li><a href="#gamma-distribution-gamma"><span class="toc-section-number">3.2</span> Gamma distribution (<code>&quot;gamma&quot;</code>)</a></li>
+<li><a href="#log-laplace-distribution-llapl"><span class="toc-section-number">3.3</span> Log-Laplace distribution (<code>&quot;llapl&quot;</code>)</a></li>
+<li><a href="#log-logistic-distribution-llogis"><span class="toc-section-number">3.4</span> Log-logistic distribution (<code>&quot;llogis&quot;</code>)</a></li>
+<li><a href="#log-normal-distribution-lnorm"><span class="toc-section-number">3.5</span> Log-normal distribution (<code>&quot;lnorm&quot;</code>)</a></li>
+</ul></li>
+<li><a href="#distributions-with-flexible-support-andor-point-masses"><span class="toc-section-number">4</span> Distributions with flexible support and/or point masses</a><ul>
+<li><a href="#Beta"><span class="toc-section-number">4.1</span> Beta distribution (<code>&quot;beta&quot;</code>)</a></li>
+<li><a href="#Unif"><span class="toc-section-number">4.2</span> Continuous uniform (<code>&quot;unif&quot;</code>)</a></li>
+<li><a href="#GenExp"><span class="toc-section-number">4.3</span> Exponential distribution with point mass (<code>&quot;expM&quot;</code>)</a></li>
+<li><a href="#generalized-extreme-value-distribution-gev"><span class="toc-section-number">4.4</span> Generalized extreme value distribution (<code>&quot;gev&quot;</code>)</a></li>
+<li><a href="#GPD"><span class="toc-section-number">4.5</span> Generalized Pareto distribution with point mass (<code>&quot;gpd&quot;</code>)</a></li>
+<li><a href="#GenLogistic"><span class="toc-section-number">4.6</span> Generalized truncated/censored logistic distribution (<code>&quot;gtclogis&quot;</code>)</a></li>
+<li><a href="#GenNormal"><span class="toc-section-number">4.7</span> Generalized truncated/censored normal distribution (<code>&quot;gtcnorm&quot;</code>)</a></li>
+<li><a href="#GenStudent"><span class="toc-section-number">4.8</span> Generalized truncated/censored Student’s <span class="math inline">\(t\)</span>-distribution (<code>&quot;gtct&quot;</code>)</a></li>
+</ul></li>
+<li><a href="#distributions-for-discrete-variables"><span class="toc-section-number">5</span> Distributions for discrete variables</a><ul>
+<li><a href="#negative-binomial-distribution-nbinom"><span class="toc-section-number">5.1</span> Negative binomial distribution (<code>&quot;nbinom&quot;</code>)</a></li>
+<li><a href="#poisson-distribution-pois"><span class="toc-section-number">5.2</span> Poisson distribution (<code>&quot;pois&quot;</code>)</a></li>
+</ul></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+
+<div id="introduction" class="section level1">
+<h1><span class="header-section-number">1</span> Introduction</h1>
+The continuous ranked probability score can be given in multiple equivalent forms,
+<span class="math display">\[\begin{align*}
+\label{eq:kernel}\mathrm{CRPS}(F,y) &amp;= \mathbb{E}_F|Y-y| - \frac{1}{2}\mathbb{E}_F|Y-Y'| \\
+&amp;= \int_{-\infty}^y F(x)^2 \, \mathrm{d} x + \int_y^{\infty} \left(1 - F(x)\right)^2 \, \mathrm{d} x \\
+&amp;= 2\int_0^{F(y)} \alpha\left(y - F^{-1}(\alpha)\right) \, \mathrm{d} \alpha + 2\int_{F(y)}^1 (1 - \alpha)\left(F^{-1}(\alpha) - y\right) \, \mathrm{d} \alpha,
+\end{align*}\]</span>
+<p>where the first is the kernel representation, followed by the threshold decomposition, and lastly the quantile decomposition. The threshold decomposition corresponds to the integral of the Brier score over all event thresholds, while the quantile decomposition is the integral of the quantile score over all probabilities.</p>
+</div>
+<div id="distributions-for-variables-on-the-real-line" class="section level1">
+<h1><span class="header-section-number">2</span> Distributions for variables on the real line</h1>
+<div id="Laplace" class="section level2">
+<h2><span class="header-section-number">2.1</span> Laplace distribution (<code>&quot;lapl&quot;</code>)</h2>
+CRPS formula:
+<span class="math display">\[\begin{align*}
+    \mathrm{CRPS}(F, y) &amp;= |y| + \exp(-|y|) - \frac{3}{4}, \\
+    \mathrm{CRPS}(F_{\mu, \sigma}, y) &amp;= \sigma\, \mathrm{CRPS}\left(F, \tfrac{y - \mu}{\sigma}\right).
+\end{align*}\]</span>
+Laplace distribution:
+<span class="math display">\[\begin{align*}
+F(x) &amp;= \begin{cases} \frac{1}{2} \exp(x), &amp; x &lt; 0,\\ 1 - \frac{1}{2} \exp(-x), &amp; x \geq 0, \end{cases} \\
+F_{\mu, \sigma}(x) &amp;= F\left(\tfrac{x - \mu}{\sigma}\right).
+\end{align*}\]</span>
+<p>Parameters:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Name</th>
+<th align="left">Domain</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>&quot;location&quot;</code></td>
+<td align="left"><span class="math inline">\(\mu \in \mathbb{R}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><code>&quot;scale&quot;</code></td>
+<td align="left"><span class="math inline">\(\sigma &gt; 0\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>See also: <a href="#tpexp">Two-piece exponential distribution</a></p>
+</div>
+<div id="Logistic" class="section level2">
+<h2><span class="header-section-number">2.2</span> Logistic distribution (<code>&quot;logis&quot;</code>)</h2>
+CRPS formula:
+<span class="math display">\[\begin{align*}
+    \mathrm{CRPS}(F, y) &amp;= y - 2\log(F(y)) - 1, \\
+    \mathrm{CRPS}(F_{\mu, \sigma}, y) &amp;= \sigma\, \mathrm{CRPS}\left(F, \tfrac{y - \mu}{\sigma} \right).
+\end{align*}\]</span>
+Logistic distribution:
+<span class="math display">\[\begin{align*}
+F(x) &amp;= \frac{1}{1 + \exp(-x)}, \\
+F_{\mu, \sigma}(x) &amp;= F\left(\tfrac{x - \mu}{\sigma}\right).
+\end{align*}\]</span>
+<p>Parameters:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Name</th>
+<th align="left">Domain</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>&quot;location&quot;</code></td>
+<td align="left"><span class="math inline">\(\mu \in \mathbb{R}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><code>&quot;scale&quot;</code></td>
+<td align="left"><span class="math inline">\(\sigma &gt; 0\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>See also: <a href="#GenLogistic">Generalized truncated/censored logistic distribution</a></p>
+</div>
+<div id="Normal" class="section level2">
+<h2><span class="header-section-number">2.3</span> Normal distribution (<code>&quot;norm&quot;</code>)</h2>
+CRPS formula:
+<span class="math display">\[\begin{align*}
+    \mathrm{CRPS}(F, y) &amp;= y\left(2F(y)-1\right) + 2f(y)  - \frac{1}{\sqrt{\pi}}, \\
+    \mathrm{CRPS}(F_{\mu, \sigma}, y) &amp;= \sigma\, \mathrm{CRPS}\left(F, \tfrac{y - \mu}{\sigma} \right).
+\end{align*}\]</span>
+Normal distribution:
+<span class="math display">\[\begin{align*}
+f(x) &amp;= \tfrac{1}{\sqrt{2\pi}}\exp\left(-\tfrac{x^2}{2}\right), \\
+F(x) &amp;= \int_{-\infty}^x f(t)\, \mathrm{d} x, \\
+F_{\mu, \sigma}(x) &amp;= F\left(\tfrac{x - \mu}{\sigma}\right).
+\end{align*}\]</span>
+<p>Parameters:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Name</th>
+<th align="left">Domain</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>&quot;mean&quot;</code></td>
+<td align="left"><span class="math inline">\(\mu \in \mathbb{R}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><code>&quot;sd&quot;</code></td>
+<td align="left"><span class="math inline">\(\sigma &gt; 0\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Notes:</p>
+<ul>
+<li><span class="citation">Gneiting et al. (2005)</span> is the original source of this CRPS formula.</li>
+</ul>
+<p>See also: <a href="#Mixnorm">Mixture of normal distributions</a>, <a href="#tpnorm">Two-piece normal distribution</a>, <a href="#GenNormal">Generalized truncated/censored normal distribution</a></p>
+</div>
+<div id="Mixnorm" class="section level2">
+<h2><span class="header-section-number">2.4</span> Mixture of normal distributions (<code>&quot;mixnorm&quot;</code>)</h2>
+CRPS formula:
+<span class="math display">\[\begin{align*}
+    \mathrm{CRPS}(F,y) &amp;= \sum_{i=1}^M \omega_i A\left(y-\mu_i,\sigma_i^2\right) - \frac{1}{2} \sum_{i=1}^M\sum_{j=1}^{M}\omega_i \omega_j A\left(\mu_i-\mu_j,\sigma_i^2+\sigma_j^2\right).
+\end{align*}\]</span>
+Finite mixture of normal distributions:
+<span class="math display">\[\begin{align*}
+  F(x) &amp;= \sum_{i=1}^M \omega_i \Phi\left(\tfrac{x-\mu_i}{\sigma_i}\right), \\
+  A\left(\mu,\sigma^2\right) &amp;= \mu\left(2\Phi\left(\tfrac{\mu}{\sigma}\right) -1 \right) + 2\sigma \varphi\left(\tfrac{\mu}{\sigma}\right), \\
+  \varphi(x) &amp;= \tfrac{1}{\sqrt{2\pi}}\exp\left(-\tfrac{x^2}{2}\right), \\
+  \Phi(x) &amp;= \int_{-\infty}^x \varphi(t)\, \mathrm{d} x.
+\end{align*}\]</span>
+<p>Parameters:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Name</th>
+<th align="left">Domain</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>&quot;m&quot;</code></td>
+<td align="left"><span class="math inline">\(\mu_1, \ldots, \mu_M \in \mathbb{R}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><code>&quot;s&quot;</code></td>
+<td align="left"><span class="math inline">\(\sigma_1, \ldots, \sigma_M &gt; 0\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>&quot;w&quot;</code></td>
+<td align="left"><span class="math inline">\(\omega_1, \ldots, \omega_M &gt; 0\)</span>, <span class="math inline">\(\omega_1 + \ldots + \omega_M = 1\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Notes:</p>
+<ul>
+<li><span class="citation">Grimit et al. (2006)</span> is the original source of this CRPS formula.</li>
+<li>Computation time increases quadratically in the number of mixture components. For <span class="math inline">\(M\)</span> in the order of several thousand, numerical integration to machine precision may be faster than using the formula above.</li>
+</ul>
+<p>See also: <a href="#Normal">Normal distribution</a></p>
+</div>
+<div id="Student" class="section level2">
+<h2><span class="header-section-number">2.5</span> Student’s <span class="math inline">\(t\)</span>-distribution (<code>&quot;t&quot;</code>)</h2>
+CRPS formula:
+<span class="math display">\[\begin{align*}
+    \mathrm{CRPS}(F_\nu, y) &amp;= y\Big(2F_\nu(y) - 1\Big) + 2f_\nu(y) \left(\frac{\nu + y^2}{\nu - 1}\right) - \frac{2\sqrt{\nu}}{\nu - 1}\frac{B(\tfrac{1}{2}, \nu - \tfrac{1}{2})}{B(\tfrac{1}{2}, \tfrac{\nu}{2})^2}, \\
+    \mathrm{CRPS}(F_{\nu, \mu, \sigma}, y) &amp;= \sigma\, \mathrm{CRPS}\left(F_\nu, \tfrac{y - \mu}{\sigma} \right).
+\end{align*}\]</span>
+Student’s <span class="math inline">\(t\)</span>-distribution:
+<span class="math display">\[\begin{align*}
+f_\nu(x) &amp;= \frac{1}{\sqrt{\nu}B(\tfrac{1}{2},\tfrac{\nu}{2})}\left(1+\frac{x^2}{\nu}\right)^{-\tfrac{\nu+1}{2}}, \\
+F_\nu(x) &amp;= \frac{1}{2} + \frac{x\ {}_2F_1(\tfrac{1}{2},\tfrac{\nu+1}{2};\tfrac{3}{2};-\tfrac{x^2}{\nu})}{\sqrt{\nu} B(\tfrac{1}{2},\tfrac{\nu}{2})}, \\
+F_{\nu, \mu, \sigma}(x) &amp;= F_\nu\left(\tfrac{x - \mu}{\sigma}\right).
+\end{align*}\]</span>
+<p>Parameters:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Name</th>
+<th align="left">Domain</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>&quot;df&quot;</code></td>
+<td align="left"><span class="math inline">\(\nu &gt; 1\)</span> (for <span class="math inline">\(\nu \in (0, 1]\)</span> the CRPS is undefined)</td>
+</tr>
+<tr class="even">
+<td align="left"><code>&quot;location&quot;</code></td>
+<td align="left"><span class="math inline">\(\mu \in \mathbb{R}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>&quot;scale&quot;</code></td>
+<td align="left"><span class="math inline">\(\sigma &gt; 0\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Mathematical functions:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Symbol</th>
+<th align="left">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\({}_2F_1\)</span></td>
+<td align="left">hypergeometric function</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(B\)</span></td>
+<td align="left">beta function</td>
+</tr>
+</tbody>
+</table>
+<p>See also: <a href="#GenStudent">Generalized truncated/censored Student’s <span class="math inline">\(t\)</span>-distribution</a></p>
+</div>
+<div id="tpexp" class="section level2">
+<h2><span class="header-section-number">2.6</span> Two-piece exponential distribution (<code>&quot;2pexp&quot;</code>)</h2>
+CRPS formula:
+<span class="math display">\[\begin{align*}
+    \mathrm{CRPS}(F_{\sigma_1, \sigma_2}, y) &amp;= \begin{cases}   \left\lvert y \right\rvert + \frac{2\sigma_1^2}{\sigma_1 + \sigma_2}\exp\left(-\left\lvert \frac{y}{\sigma_1}\right\rvert \right) - \frac{ 2\sigma_1^2}{\sigma_1 + \sigma_2} + \frac{\sigma_1^3 + \sigma_2^3}{2(\sigma_1 + \sigma_2)^2}, &amp; y &lt; 0, \\ \left\lvert y \right\rvert + \frac{2\sigma_2^2}{\sigma_1 + \sigma_2}\exp\left(-\left\lvert \frac{y}{\sigma_2}\right\rvert \right) - \frac{ 2\sigma_2^2}{\sigma_1 + \sigma_2} + \frac{\sigma_1^3 + \sigma_2^3}{2(\sigma_1 + \sigma_2)^2}, &amp; y \ge 0, \end{cases} \\
+    \mathrm{CRPS}(F_{\mu, \sigma_1, \sigma_2}, y) &amp;= \mathrm{CRPS}(F_{\sigma_1, \sigma_2}, y - \mu).
+\end{align*}\]</span>
+Two-piece exponential distribution:
+<span class="math display">\[\begin{align*}
+F_{\sigma_1, \sigma_2}(x) &amp;= \begin{cases} \frac{\sigma_1}{\sigma_1 + \sigma_2}\exp\left(\frac{x}{\sigma_1}\right), &amp; x &lt; 0, \\
+1 - \frac{\sigma_2}{\sigma_1 + \sigma_2}\exp\left(-\frac{x}{\sigma_2}\right), &amp; x \ge 0,\end{cases} \\
+F_{\mu, \sigma_1, \sigma_2}(x) &amp;= F_{\sigma_1, \sigma_2}(x - \mu).
+\end{align*}\]</span>
+<p>Parameters:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Name</th>
+<th align="left">Domain</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>&quot;location&quot;</code></td>
+<td align="left"><span class="math inline">\(\mu \in \mathbb{R}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><code>&quot;scale1&quot;</code></td>
+<td align="left"><span class="math inline">\(\sigma_1 &gt; 0\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>&quot;scale2&quot;</code></td>
+<td align="left"><span class="math inline">\(\sigma_2 &gt; 0\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>See also: <a href="#Laplace">Laplace</a></p>
+</div>
+<div id="tpnorm" class="section level2">
+<h2><span class="header-section-number">2.7</span> Two-piece normal distribution (<code>&quot;2pnorm&quot;</code>)</h2>
+CRPS formula:
+<span class="math display">\[\begin{align*}
+    \mathrm{CRPS}(F_{\sigma_1, \sigma_2}, y) &amp;= \sigma_1\, \mathrm{CRPS}\left(F_{-\infty, 0}^{0, \sigma_2/(\sigma_1 + \sigma_2)}, \tfrac{\min(0, y)}{\sigma_1}\right) \\
+    &amp;\quad + \sigma_2\, \mathrm{CRPS}\left(F_{0, \sigma_1/(\sigma_1 + \sigma_2)}^{\infty, 0}, \tfrac{\max(0, y)}{\sigma_2}\right), \\
+    \mathrm{CRPS}(F_{\mu, \sigma_1, \sigma_2}, y) &amp;= \mathrm{CRPS}(F_{\sigma_1, \sigma_2}, y - \mu),
+\end{align*}\]</span>
+<p>with <span class="math inline">\(F_{l, L}^{u, U}\)</span> as in <a href="#GenNormal">Generalized truncated/censored normal distribution</a>.</p>
+Two-piece normal distribution:
+<span class="math display">\[\begin{align*}
+  F_{\sigma_1,\sigma_2}(x) &amp;= \begin{cases} \frac{2\sigma_1}{\sigma_1+\sigma_2}\Phi\left(\frac{x}{\sigma_1}\right), &amp; x &lt; 0,\\ \frac{\sigma_1-\sigma_2}{\sigma_1+\sigma_2} + \frac{2\sigma_2}{\sigma_1+\sigma_2} \Phi\left(\frac{x}{\sigma_2}\right), &amp; x \ge 0, \end{cases} \\
+  F_{\mu, \sigma_1, \sigma_2}(x) &amp;= F_{\sigma_1, \sigma_2}(x - \mu), \\
+  \Phi(x) &amp;= \int_{-\infty}^x \varphi(t)\, \mathrm{d} x, \\
+  \varphi(x) &amp;= \tfrac{1}{\sqrt{2\pi}}\exp\left(-\tfrac{x^2}{2}\right).
+\end{align*}\]</span>
+<p>Parameters:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Name</th>
+<th align="left">Domain</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>&quot;location&quot;</code></td>
+<td align="left"><span class="math inline">\(\mu \in \mathbb{R}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><code>&quot;scale1&quot;</code></td>
+<td align="left"><span class="math inline">\(\sigma_1 &gt; 0\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>&quot;scale2&quot;</code></td>
+<td align="left"><span class="math inline">\(\sigma_2 &gt; 0\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Notes:</p>
+<ul>
+<li><span class="citation">Gneiting and Thorarinsdottir (2010)</span> give an explicit CRPS formula.</li>
+<li>The left tail follows a right-censored normal distribution, censored at 0 with mass , with location parameter 0 and scale parameter <span class="math inline">\(\sigma_1\)</span>. The right tail follows a left-censored normal distribution, censored at 0 with mass , with location parameter 0 and scale parameter <span class="math inline">\(\sigma_2\)</span>.</li>
+<li>The same construction can be used to implement two-piece families based on the <a href="#Student"><span class="math inline">\(t\)</span></a>, <a href="#Logistic">logistic</a>, <a href="#Exponential">exponential</a> (see section <a href="#tpexp">Two-piece exponential</a>), and <a href="#GPD">generalized Pareto</a> distributions.</li>
+</ul>
+<p>See also: <a href="#Normal">Normal distribution</a></p>
+</div>
+</div>
+<div id="distributions-for-non-negative-variables" class="section level1">
+<h1><span class="header-section-number">3</span> Distributions for non-negative variables</h1>
+<div id="Exponential" class="section level2">
+<h2><span class="header-section-number">3.1</span> Exponential distribution (<code>&quot;exp&quot;</code>)</h2>
+CRPS formula:
+<span class="math display">\[\begin{align*}
+    \mathrm{CRPS}(F_\lambda, y) &amp;= |y| - \frac{2F_\lambda(y)}{\lambda} + \frac{1}{2\lambda}.
+\end{align*}\]</span>
+Exponential distribution:
+<span class="math display">\[\begin{align*}
+F_\lambda(x) = \begin{cases} 1 - \exp(-\lambda x), &amp; x \ge 0, \\ 0, &amp; x &lt; 0.\end{cases}
+\end{align*}\]</span>
+<p>Parameters:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Name</th>
+<th align="left">Domain</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>&quot;rate&quot;</code></td>
+<td align="left"><span class="math inline">\(\lambda &gt; 0\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>See also: <a href="#GenExp">Exponential distribution with point mass</a>, <a href="#GPD">Generalized Pareto distribution with point mass</a></p>
+</div>
+<div id="gamma-distribution-gamma" class="section level2">
+<h2><span class="header-section-number">3.2</span> Gamma distribution (<code>&quot;gamma&quot;</code>)</h2>
+CRPS formula: <span class="math display">\[
+    \mathrm{CRPS}(F_{\alpha,\beta},y) = y\left(2F_{\alpha,\beta}(y)-1\right) - \frac{\alpha}{\beta}\left(2F_{\alpha + 1, \beta}(y) -1\right) - \frac{1}{\beta B\left(\tfrac{1}{2},\alpha\right)}
+    \]</span> Gamma distribution:
+<span class="math display">\[\begin{align*}
+F_{\alpha,\beta}(x) &amp;= \begin{cases}\frac{\Gamma_l(\alpha,\beta x)}{\Gamma(\alpha)}, &amp; x \geq 0, \\ 0, &amp; x &lt; 0. \end{cases}
+\end{align*}\]</span>
+<p>Parameters:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Name</th>
+<th align="left">Domain</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>&quot;shape&quot;</code></td>
+<td align="left"><span class="math inline">\(\alpha &gt; 0\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><code>&quot;rate&quot;</code></td>
+<td align="left"><span class="math inline">\(\beta &gt; 0\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Mathematical functions:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Symbol</th>
+<th align="left">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\(B\)</span></td>
+<td align="left">beta function</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(\Gamma\)</span></td>
+<td align="left">gamma function</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(\Gamma_l\)</span></td>
+<td align="left">lower incomplete gamma function</td>
+</tr>
+</tbody>
+</table>
+<p>Notes:</p>
+<ul>
+<li><span class="citation">Möller and Scheuerer (2015)</span> is the original source of this CRPS formula.</li>
+</ul>
+</div>
+<div id="log-laplace-distribution-llapl" class="section level2">
+<h2><span class="header-section-number">3.3</span> Log-Laplace distribution (<code>&quot;llapl&quot;</code>)</h2>
+CRPS formula:
+<span class="math display">\[\begin{align*}
+    \mathrm{CRPS}(F_{\mu, \sigma}, y) &amp;= y\Big(2F_{\mu, \sigma}(y) - 1\Big) + \exp(\mu) \left(\tfrac{\sigma}{4 - \sigma^2} + A(y) \right)
+\end{align*}\]</span>
+Log-Laplace distribution:
+<span class="math display">\[\begin{align*}
+  F_{\mu, \sigma}(x) &amp;= \begin{cases} 0, &amp; x \leq 0,\\ \frac{1}{2}\exp\left(\frac{\log x - \mu}{\sigma}\right), &amp; 0 &lt; x &lt; \exp(\mu), \\
+1 - \frac{1}{2}\exp\left(-\frac{\log x - \mu}{\sigma}\right), &amp; x \geq \exp(\mu), \end{cases} \\
+  A(x) &amp;= \begin{cases} \frac{1}{1 + \sigma}\left(1-\left(2F_{\mu, \sigma}(x)\right)^{1+\sigma}\right), &amp; x &lt; \exp(\mu), \\ -\frac{1}{1-\sigma}\left(1-\left(2(1-F_{\mu, \sigma}(x))\right)^{1-\sigma}\right), &amp; y \geq \exp(\mu). \end{cases}
+\end{align*}\]</span>
+<p>Parameters:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Name</th>
+<th align="left">Domain</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>&quot;locationlog&quot;</code></td>
+<td align="left"><span class="math inline">\(\mu \in \mathbb{R}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><code>&quot;scalelog&quot;</code></td>
+<td align="left"><span class="math inline">\(\sigma \in (0, 1)\)</span> (for <span class="math inline">\(\sigma \ge 1\)</span> the CRPS is undefined)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="log-logistic-distribution-llogis" class="section level2">
+<h2><span class="header-section-number">3.4</span> Log-logistic distribution (<code>&quot;llogis&quot;</code>)</h2>
+CRPS formula:
+<span class="math display">\[\begin{align*}
+    \mathrm{CRPS}(F_{\mu, \sigma}, y) &amp;= y\left(2F_{\mu, \sigma}(y) - 1\right) - 2\exp(\mu) B(F_{\mu, \sigma}(y); 1 + \sigma, 1 - \sigma) \\
+    &amp;\quad + \exp(\mu)(1 - \sigma)B(1 + \sigma, 1 - \sigma)
+\end{align*}\]</span>
+Log-logistic distribution:
+<span class="math display">\[\begin{align*}
+F_{\mu, \sigma}(x) &amp;= \begin{cases} 0, &amp; x \leq 0, \\ \left(1 + \exp\left(-\tfrac{\log x - \mu}{\sigma}\right)\right)^{-1}, &amp; x &gt; 0, \end{cases}
+\end{align*}\]</span>
+<p>Parameters:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Name</th>
+<th align="left">Domain</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>&quot;locationlog&quot;</code></td>
+<td align="left"><span class="math inline">\(\mu \in \mathbb{R}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><code>&quot;scalelog&quot;</code></td>
+<td align="left"><span class="math inline">\(\sigma \in (0, 1)\)</span> (for <span class="math inline">\(\sigma \ge 1\)</span> the CRPS is undefined)</td>
+</tr>
+</tbody>
+</table>
+<p>Mathematical functions:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Symbol</th>
+<th align="left">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\(B(\cdot, \cdot)\)</span></td>
+<td align="left">beta function</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(B(x; \cdot, \cdot)\)</span></td>
+<td align="left">incomplete beta function</td>
+</tr>
+</tbody>
+</table>
+<p>Notes:</p>
+<ul>
+<li><span class="citation">Taillardat et al. (2016)</span> give an alternative CRPS formula.</li>
+</ul>
+</div>
+<div id="log-normal-distribution-lnorm" class="section level2">
+<h2><span class="header-section-number">3.5</span> Log-normal distribution (<code>&quot;lnorm&quot;</code>)</h2>
+<span class="math display">\[\begin{align*}
+    \mathrm{CRPS}(F_{\mu,\sigma},y) &amp;= y\left(2F_{\mu, \sigma}(y) - 1\right) - 2 \exp(\mu+\sigma^2/2)\left(\Phi\left(\tfrac{\log y -\mu - \sigma^2}{\sigma}\right) + \Phi\left(\tfrac{\sigma}{\sqrt{2}}\right) - 1\right)
+\end{align*}\]</span>
+Log-normal distribution:
+<span class="math display">\[\begin{align*}
+  F_{\mu,\sigma}(x) &amp;= \begin{cases} 0, &amp; x\leq 0, \\ \Phi\left(\tfrac{\log x - \mu}{\sigma}\right), &amp; x &gt; 0, \end{cases} \\
+  \varphi(x) &amp;= \tfrac{1}{\sqrt{2\pi}}\exp\left(-\tfrac{x^2}{2}\right), \\
+  \Phi(x) &amp;= \int_{-\infty}^x \varphi(t)\, \mathrm{d} x.
+\end{align*}\]</span>
+<p>Parameters:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Name</th>
+<th align="left">Domain</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>&quot;locationlog&quot;</code></td>
+<td align="left"><span class="math inline">\(\mu \in \mathbb{R}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><code>&quot;scalelog&quot;</code></td>
+<td align="left"><span class="math inline">\(\sigma &gt; 0\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Notes:</p>
+<ul>
+<li><span class="citation">Baran and Lerch (2015)</span> is the original source of this CRPS formula.</li>
+</ul>
+</div>
+</div>
+<div id="distributions-with-flexible-support-andor-point-masses" class="section level1">
+<h1><span class="header-section-number">4</span> Distributions with flexible support and/or point masses</h1>
+<div id="Beta" class="section level2">
+<h2><span class="header-section-number">4.1</span> Beta distribution (<code>&quot;beta&quot;</code>)</h2>
+CRPS formula:
+<span class="math display">\[\begin{align*}
+    \mathrm{CRPS}(F_{\alpha, \beta}, y) &amp;= y(2F_{\alpha, \beta}(y) - 1) + \frac{\alpha}{\alpha + \beta} \left(1 - 2F_{\alpha + 1, \beta}(y) - \frac{2B(2\alpha, 2\beta)}{\alpha B(\alpha, \beta)^2} \right), \\
+    \mathrm{CRPS}(F_{l, \alpha, \beta}^{u}, y) &amp;= (u - l)\, \mathrm{CRPS}\left(F_{\alpha, \beta}, \tfrac{y - l}{u - l} \right).
+\end{align*}\]</span>
+Beta distribution:
+<span class="math display">\[\begin{align*}
+  F_{\alpha, \beta}(x) &amp;= \begin{cases} 0 &amp; x &lt; 0\\ I(x; \alpha, \beta) &amp; 0 \leq x &lt; 1\\ 1 &amp; x \geq 1 \end{cases}, \\
+  F_{l, \alpha, \beta}^{u}(x) &amp;= F_{\alpha, \beta}\left(\tfrac{x - l}{u - l}\right).
+\end{align*}\]</span>
+<p>Parameters:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Name</th>
+<th align="left">Domain</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>&quot;shape1&quot;</code></td>
+<td align="left"><span class="math inline">\(\alpha &gt; 0\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><code>&quot;shape2&quot;</code></td>
+<td align="left"><span class="math inline">\(\beta &gt; 0\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>&quot;lower&quot;</code></td>
+<td align="left"><span class="math inline">\(l \in \mathbb{R}\)</span>, <span class="math inline">\(l &lt; u\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><code>&quot;upper&quot;</code></td>
+<td align="left"><span class="math inline">\(u \in \mathbb{R}\)</span>, <span class="math inline">\(l &lt; u\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Mathematical functions:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Symbol</th>
+<th align="left">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\(B\)</span></td>
+<td align="left">beta function</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(I\)</span></td>
+<td align="left">regularized incomplete beta function</td>
+</tr>
+</tbody>
+</table>
+<p>Notes:</p>
+<ul>
+<li><span class="citation">Taillardat et al. (2016)</span> give an equivalent expression.</li>
+</ul>
+<p>See also: <a href="#Unif">Continuous uniform distribution</a></p>
+</div>
+<div id="Unif" class="section level2">
+<h2><span class="header-section-number">4.2</span> Continuous uniform (<code>&quot;unif&quot;</code>)</h2>
+CRPS formula:
+<span class="math display">\[\begin{align*}
+    \mathrm{CRPS}(F, y) &amp;= |y - z| + z^2 - z + \frac{1}{3}, \\
+    \text{where}\quad z &amp;= \begin{cases} 0, &amp; y &lt; 0, \\ y, &amp; 0 \le y &lt; 1, \\ 1, &amp; y \ge 1. \end{cases}
+\end{align*}\]</span>
+Continuous uniform:
+<span class="math display">\[\begin{align*}
+  F(x) &amp;= \begin{cases} 0, &amp; x &lt; 0,\\ x, &amp; 0 \leq x &lt; 1,\\ 1, &amp; x &gt; 1. \end{cases}
+\end{align*}\]</span>
+<p>See also: <a href="#Beta">Beta distribution</a></p>
+<div id="generalized-continuous-uniform-unif" class="section level3">
+<h3><span class="header-section-number">4.2.1</span> Generalized continuous uniform (<code>&quot;unif&quot;</code>)</h3>
+CRPS formula:
+<span class="math display">\[\begin{align*}
+    \mathrm{CRPS}(F_{L}^{U}, y) &amp;= |y - z| + z^2(1 - L - U) - z(1 - 2L) \\
+    &amp;\quad + \frac{(1 - L - U)^2}{3} + (1 - L)U, \\
+    \text{where}\quad z &amp;= \begin{cases} 0, &amp; y &lt; 0, \\ y, &amp; 0 \le y &lt; 1, \\ 1, &amp; y \ge 1, \end{cases} \\
+    \mathrm{CRPS}(F_{l, L}^{u, U}, y) &amp;= (u - l)\, \mathrm{CRPS}\left(F_{L}^{U}, \tfrac{y - l}{u - l} \right).
+\end{align*}\]</span>
+Continuous uniform with point masses and support transformation:
+<span class="math display">\[\begin{align*}
+  F_{L}^{U}(x) &amp;= \begin{cases} 0, &amp; x &lt; 0, \\ L + (1 - L - U) x, &amp; 0 \leq x &lt; 1,\\ 1, &amp; x \geq 1, \end{cases} \\
+  F_{l, L}^{u, U}(x) &amp;= F_{L}^{U}\left(\tfrac{x - l}{u - l}\right).
+\end{align*}\]</span>
+<p>Parameters:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Name</th>
+<th align="left">Domain</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>&quot;min&quot;</code></td>
+<td align="left"><span class="math inline">\(l \in \mathbb{R}\)</span>, <span class="math inline">\(l &lt; u\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><code>&quot;max&quot;</code></td>
+<td align="left"><span class="math inline">\(u \in \mathbb{R}\)</span>, <span class="math inline">\(l &lt; u\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>&quot;lmass&quot;</code></td>
+<td align="left"><span class="math inline">\(L \ge 0\)</span>, <span class="math inline">\(L + U &lt; 1\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><code>&quot;umass&quot;</code></td>
+<td align="left"><span class="math inline">\(U \ge 0\)</span>, <span class="math inline">\(L + U &lt; 1\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="GenExp" class="section level2">
+<h2><span class="header-section-number">4.3</span> Exponential distribution with point mass (<code>&quot;expM&quot;</code>)</h2>
+<span class="math display">\[\begin{align*}
+    \mathrm{CRPS}(F_{M}, y) &amp;= |y| - 2  (1 - M)F(y) + \frac{(1 - M)^2}{2}, \\
+    \mathrm{CRPS}(F_{M, \mu, \sigma}, y) &amp;= \sigma\, \mathrm{CRPS}\left(F_M, \tfrac{y - \mu}{\sigma} \right).
+\end{align*}\]</span>
+Exponential distribution with point mass:
+<span class="math display">\[\begin{align*}
+  F_M(x) &amp;= \begin{cases} M + (1 - M)F(x), &amp; x \ge 0, \\ 0, &amp; x &lt; 0, \end{cases} \\
+  F(x) &amp;= \begin{cases} 1 - \exp(-x), &amp; x \ge 0, \\ 0, &amp; x &lt; 0, \end{cases} \\
+  F_{M, \mu, \sigma}(x) &amp;= F_M\left(\tfrac{x - \mu}{\sigma}\right).
+\end{align*}\]</span>
+<p>Parameters:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Name</th>
+<th align="left">Domain</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>&quot;location&quot;</code></td>
+<td align="left"><span class="math inline">\(\mu \in \mathbb{R}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><code>&quot;scale&quot;</code></td>
+<td align="left"><span class="math inline">\(\sigma &gt; 0\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>&quot;mass&quot;</code></td>
+<td align="left"><span class="math inline">\(M \in [0, 1]\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>See also: <a href="#Exponential">Exponential distribution</a>, <a href="#GPD">Generalized Pareto distribution with point mass</a></p>
+</div>
+<div id="generalized-extreme-value-distribution-gev" class="section level2">
+<h2><span class="header-section-number">4.4</span> Generalized extreme value distribution (<code>&quot;gev&quot;</code>)</h2>
+CRPS formula:
+<span class="math display">\[\begin{align*}
+  \mathrm{CRPS}(F_{\xi, \mu, \sigma}, y) &amp;= \sigma\, \mathrm{CRPS}\left(F_{\xi}, \tfrac{y - \mu}{\sigma} \right), \\
+    \text{For $\xi = 0$:}\quad \mathrm{CRPS}(F_{\xi},y) &amp;= - y - 2 \mathrm{Ei}(\log F_{\xi}(y)) + C - \log 2, \\
+  \text{For $\xi \neq 0$:} \quad \mathrm{CRPS}(F_\xi, y) &amp;= y\left(2F_\xi(y) - 1\right) - 2G_\xi(y) - \frac{1 - \left(2 - 2^\xi\right)\Gamma(1 - \xi)}{\xi}.
+\end{align*}\]</span>
+Generalized extreme value distribution:
+<span class="math display">\[\begin{align*}
+  F_{\xi, \mu, \sigma}(x) &amp;= F_{\xi}\left(\tfrac{x - \mu}{\sigma}\right), \\
+  \text{for $\xi = 0$:}\quad F_{\xi}(x) &amp;= \exp\left(-\exp(-x)\right) \\
+  \text{for $\xi &gt; 0$:}\quad F_{\xi}(x) &amp;= \begin{cases} 0, &amp; x \le -\frac{1}{\xi}, \\ \exp\left(-(1+\xi x)^{-1/\xi}\right), &amp; x &gt;  -\frac{1}{\xi}, \end{cases}\\
+  G_{\xi}(x) &amp;= \begin{cases} 0, &amp; x \le -\frac{1}{\xi}, \\ -\frac{F_\xi(x)}{\xi} + \frac{\Gamma_u(1 - \xi, -\log F_\xi(x))}{\xi}, &amp; x &gt; -\frac{1}{\xi}, \end{cases} \\
+  \text{for $\xi &lt; 0$:}\quad F_{\xi}(x) &amp;= \begin{cases} \exp\left(-(1+\xi x)^{-1/\xi}\right), &amp; x &lt;  -\frac{1}{\xi}, \\ 1, &amp; x \ge -\frac{1}{\xi}, \end{cases} \\
+  G_\xi(x) &amp;= \begin{cases} -\frac{F_\xi(x)}{\xi} + \frac{\Gamma_u(1 - \xi, -\log F_\xi(x))}{\xi}, &amp; x &lt; -\frac{1}{\xi}, \\ -\frac{1}{\xi} + \frac{\Gamma(1 - \xi)}{\xi}, &amp; x \ge -\frac{1}{\xi}. \end{cases}
+\end{align*}\]</span>
+<p>Parameters:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Name</th>
+<th align="left">Domain</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>&quot;shape&quot;</code></td>
+<td align="left"><span class="math inline">\(\xi &lt; 1\)</span> (for <span class="math inline">\(\xi \ge 1\)</span> the CRPS is undefined)</td>
+</tr>
+<tr class="even">
+<td align="left"><code>&quot;location&quot;</code></td>
+<td align="left"><span class="math inline">\(\mu \in \mathbb{R}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>&quot;scale&quot;</code></td>
+<td align="left"><span class="math inline">\(\sigma &gt; 0\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Mathematical constants and functions:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Symbol</th>
+<th align="left">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\(C\)</span></td>
+<td align="left">Euler-Mascheroni constant</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(\mathrm{Ei}\)</span></td>
+<td align="left">exponential integral</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(\Gamma\)</span></td>
+<td align="left">gamma function</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(\Gamma_u\)</span></td>
+<td align="left">upper incomplete gamma function</td>
+</tr>
+</tbody>
+</table>
+<p>Notes:</p>
+<ul>
+<li><span class="citation">Friederichs and Thorarinsdottir (2012)</span> is the original source of this formula.</li>
+</ul>
+</div>
+<div id="GPD" class="section level2">
+<h2><span class="header-section-number">4.5</span> Generalized Pareto distribution with point mass (<code>&quot;gpd&quot;</code>)</h2>
+CRPS formula:
+<span class="math display">\[\begin{align*}
+  \mathrm{CRPS}(F_{M, \xi}, y) &amp;= |y| - \frac{2(1 - M)}{1 - \xi}\left(1 - \left(1 - F_\xi(y)\right)^{1 - \xi}\right) + \frac{(1 - M)^2}{2 - \xi}, \\
+  \mathrm{CRPS}(F_{M, \xi, \mu, \sigma}, y) &amp;= \sigma\, \mathrm{CRPS}\left(F_{M, \xi}, \tfrac{y - \mu}{\sigma} \right).
+\end{align*}\]</span>
+Generalized Pareto distribution with point mass:
+<span class="math display">\[\begin{align*}
+  F_{M, \xi}(x) &amp;= \begin{cases} M + (1 - M)F_\xi(x), &amp; x \ge 0, \\ 0, &amp; x &lt; 0, \end{cases} \\
+  F_{M, \xi, \mu, \sigma}(x) &amp;= F_{M, \xi}\left(\tfrac{x - \mu}{\sigma}\right) \\
+  \text{for $\xi &gt; 0$:}\quad F_\xi(x) &amp;= \begin{cases} 0, &amp; x &lt; 0, \\ 1 - (1 + \xi x)^{-1/\xi}, &amp; x \ge 0, \end{cases} \\
+  \text{for $\xi &lt; 0$:}\quad F_\xi(x) &amp;= \begin{cases} 0, &amp; x &lt; 0, \\ 1 - (1 + \xi x)^{-1/\xi}, &amp; 0 \le x &lt; |\xi|^{-1}, \\ 1, &amp; x \ge |\xi|^{-1}, \end{cases} \\
+  \text{for $\xi = 0$:}\quad F_\xi(x) &amp;= \begin{cases} 0, &amp; x &lt; 0, \\ 1 - \exp(-x), &amp; x \ge 0. \end{cases}
+\end{align*}\]</span>
+<p>Parameters:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Name</th>
+<th align="left">Domain</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>&quot;shape&quot;</code></td>
+<td align="left"><span class="math inline">\(\xi &lt; 1\)</span> (for <span class="math inline">\(\xi \ge 1\)</span> the CRPS is undefined)</td>
+</tr>
+<tr class="even">
+<td align="left"><code>&quot;location&quot;</code></td>
+<td align="left"><span class="math inline">\(\mu \in \mathbb{R}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>&quot;scale&quot;</code></td>
+<td align="left"><span class="math inline">\(\sigma &gt; 0\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><code>&quot;mass&quot;</code></td>
+<td align="left"><span class="math inline">\(M \in [0, 1]\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Notes:</p>
+<ul>
+<li><span class="citation">Friederichs and Thorarinsdottir (2012)</span> give CRPS formulas for the generalized Pareto distribution without a point mass.</li>
+</ul>
+<p>See also: <a href="#Exponential">Exponential distribution</a>, <a href="#GenExp">Exponential distribution with point mass</a></p>
+</div>
+<div id="GenLogistic" class="section level2">
+<h2><span class="header-section-number">4.6</span> Generalized truncated/censored logistic distribution (<code>&quot;gtclogis&quot;</code>)</h2>
+CRPS formula:
+<span class="math display">\[\begin{align*}
+    \mathrm{CRPS}\left(F_{l, L}^{u, U}, y\right) &amp;= |y - z| + uU^2 - lL^2 \\
+    &amp;\quad - \left(\frac{1 - L - U}{F(u) - F(l)}\right)z \left(\frac{(1 - 2L)F(u) + (1 - 2U)F(l)}{1 - L - U}\right) \\
+    &amp;\quad - \left(\frac{1 - L - U}{F(u) - F(l)}\right)\left(2\log F(-z) - 2G(u)U - 2G(l)L\right) \\
+    &amp;\quad - \left(\frac{1 - L - U}{F(u) - F(l)}\right)^2 (H(u) - H(l)), \\
+    \text{where}\quad z&amp;= \begin{cases} l, &amp; y &lt; l, \\ y, &amp; l \le y &lt; u, \\ u, &amp; y \ge u, \end{cases} \\
+    \mathrm{CRPS}(F_{l, L, \mu, \sigma}^{u, U}, y) &amp;= \sigma\, \mathrm{CRPS}\left(F_{(l - \mu)/\sigma, L}^{(u - \mu)/\sigma, U}, \tfrac{y - \mu}{\sigma} \right).
+\end{align*}\]</span>
+Generalized truncated/censored logistic distribution:
+<span class="math display">\[\begin{align*}
+  F_{l, L}^{u, U}(x) &amp;= \begin{cases} 0, &amp; x &lt; l, \\ \frac{1 - L - U}{F(u) - F(l)} F(z) - \frac{1 - L - U}{F(u) - F(l)} F(l) + L, &amp; l \leq x &lt; u, \\ 1, &amp; x \geq u, \end{cases} \\
+  F_{l, L, \mu, \sigma}^{u, U}(x) &amp;= F_{(l - \mu)/\sigma, L}^{(u - \mu)/\sigma, U}\left(\tfrac{x - \mu}{\sigma}\right), \\
+F(x) &amp;= \frac{1}{1 + \exp(-x)}, \\
+G(x) &amp;= xF(x) + \log F(-x), \\
+H(x) &amp;= F(x) - xF(x)^2 + (1 - 2F(x))\log F(-x).
+\end{align*}\]</span>
+<p>Parameters:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Name</th>
+<th align="left">Domain</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>&quot;location&quot;</code></td>
+<td align="left"><span class="math inline">\(\mu \in \mathbb{R}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><code>&quot;scale&quot;</code></td>
+<td align="left"><span class="math inline">\(\sigma &gt; 0\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>&quot;lower&quot;</code></td>
+<td align="left"><span class="math inline">\(l \in \mathbb{R}\)</span>, <span class="math inline">\(l &lt; u\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><code>&quot;upper&quot;</code></td>
+<td align="left"><span class="math inline">\(u \in \mathbb{R}\)</span>, <span class="math inline">\(l &lt; u\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>&quot;lmass&quot;</code></td>
+<td align="left"><span class="math inline">\(L \ge 0\)</span>, <span class="math inline">\(L + U &lt; 1\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><code>&quot;umass&quot;</code></td>
+<td align="left"><span class="math inline">\(U \ge 0\)</span>, <span class="math inline">\(L + U &lt; 1\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>See also: <a href="#Logistic">Logistic distribution</a></p>
+<div id="censored-logistic-distribution-clogis" class="section level3">
+<h3><span class="header-section-number">4.6.1</span> Censored logistic distribution (<code>&quot;clogis&quot;</code>)</h3>
+CRPS formula:
+<span class="math display">\[\begin{align*}
+    \mathrm{CRPS}\left(F_{l}^{u}, y\right) &amp;= |y - z| +  z + \log \left(\frac{F(-l)F(u)}{F(z)^2}\right) - F(u) + F(l), \\
+    \text{where}\quad z&amp;= \begin{cases} l, &amp; y &lt; l, \\ y, &amp; l \le y &lt; u, \\ u, &amp; y \ge u. \end{cases}
+\end{align*}\]</span>
+Censored logistic distribution:
+<span class="math display">\[\begin{align*}
+  F_{l}^{u}(x) = \begin{cases} 0, &amp; x &lt; l, \\ F(x), &amp; l \leq x &lt; u, \\ 1, &amp; x \geq u, \end{cases}
+\end{align*}\]</span>
+<p>where all other symbols are as given in <a href="#GenLogistic">Generalized truncated/censored logistic distribution</a>.</p>
+<p>Notes:</p>
+<ul>
+<li><span class="citation">Taillardat et al. (2016)</span> give a CRPS formula for a left-censored logistic distribution with boundary 0.</li>
+</ul>
+</div>
+<div id="truncated-logistic-distribution-tlogis" class="section level3">
+<h3><span class="header-section-number">4.6.2</span> Truncated logistic distribution (<code>&quot;tlogis&quot;</code>)</h3>
+<span class="math display">\[\begin{align*}
+    \mathrm{CRPS}\left(F_{l}^{u}, y\right) &amp;= |y - z| - \frac{zF(u) + zF(l) + 2\log F(-z)}{F(u) - F(l)} - \frac{H(u) - H(l)}{(F(u) - F(l))^2}, \\
+    \text{where}\quad z&amp;= \begin{cases} l, &amp; y &lt; l, \\ y, &amp; l \le y &lt; u, \\ u, &amp; y \ge u. \end{cases}
+\end{align*}\]</span>
+Truncated logistic distribution:
+<span class="math display">\[\begin{align*}
+  F_{l}^{u}(x) = \begin{cases} 0, &amp; x &lt; l, \\ \frac{F(x) - F(l)}{F(u) - F(l)}, &amp; l \leq x &lt; u, \\ 1, &amp; x \geq u, \end{cases}
+\end{align*}\]</span>
+<p>where all other symbols are as given in <a href="#GenLogistic">Generalized truncated/censored logistic distribution</a>.</p>
+<p>Notes:</p>
+<ul>
+<li><span class="citation">Möller and Scheuerer (2015)</span> give a CRPS formula for a left-truncated logistic distribution with boundary 0.</li>
+</ul>
+</div>
+</div>
+<div id="GenNormal" class="section level2">
+<h2><span class="header-section-number">4.7</span> Generalized truncated/censored normal distribution (<code>&quot;gtcnorm&quot;</code>)</h2>
+CRPS formula:
+<span class="math display">\[\begin{align*}
+    \mathrm{CRPS}\left(F_{l, L}^{u, U}, y\right) &amp;= |y - z| + uU^2 - lL^2 \\
+    &amp;\quad + \left(\frac{1 - L - U}{F(u) - F(l)}\right)z\left(2F(z) - \frac{(1 - 2L)F(u) + (1 - 2U)F(l)}{1 - L - U}\right) \\
+    &amp;\quad + \left(\frac{1 - L - U}{F(u) - F(l)}\right)\left(2f(z) - 2f(u)U - 2f(l)L\right) \\
+    &amp;\quad - \left(\frac{1 - L - U}{F(u) - F(l)}\right)^2 \left(\frac{1}{\sqrt{\pi}}\right) \left(F\left(u\sqrt{2}\right) - F\left(l\sqrt{2}\right)\right), \\
+    \text{where}\quad z&amp;= \begin{cases} l, &amp; y &lt; l, \\ y, &amp; l \le y &lt; u, \\ u, &amp; y \ge u, \end{cases} \\
+    \mathrm{CRPS}(F_{l, L, \mu, \sigma}^{u, U}, y) &amp;= \sigma\, \mathrm{CRPS}\left(F_{(l - \mu)/\sigma, L}^{(u - \mu)/\sigma, U}, \tfrac{y - \mu}{\sigma} \right).
+\end{align*}\]</span>
+Generalized truncated/censored normal distribution:
+<span class="math display">\[\begin{align*}
+  F_{l, L}^{u, U}(x) &amp;= \begin{cases} 0, &amp; x &lt; l, \\ \frac{1 - L - U}{F(u) - F(l)} F(z) - \frac{1 - L - U}{F(u) - F(l)} F(l) + L, &amp; l \leq x &lt; u, \\ 1, &amp; x \geq u, \end{cases} \\
+  F_{l, L, \mu, \sigma}^{u, U}(x) &amp;= F_{(l - \mu)/\sigma, L}^{(u - \mu)/\sigma, U}\left(\tfrac{x - \mu}{\sigma}\right), \\
+  F(x) &amp;= \int_{-\infty}^x f(t)\, \mathrm{d}t, \\
+  f(x) &amp;= \frac{1}{\sqrt{2\pi}}\exp(-x^2/2).
+\end{align*}\]</span>
+<p>Parameters:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Name</th>
+<th align="left">Domain</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>&quot;location&quot;</code></td>
+<td align="left"><span class="math inline">\(\mu \in \mathbb{R}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><code>&quot;scale&quot;</code></td>
+<td align="left"><span class="math inline">\(\sigma &gt; 0\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>&quot;lower&quot;</code></td>
+<td align="left"><span class="math inline">\(l \in \mathbb{R}\)</span>, <span class="math inline">\(l &lt; u\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><code>&quot;upper&quot;</code></td>
+<td align="left"><span class="math inline">\(u \in \mathbb{R}\)</span>, <span class="math inline">\(l &lt; u\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>&quot;lmass&quot;</code></td>
+<td align="left"><span class="math inline">\(L \ge 0\)</span>, <span class="math inline">\(L + U &lt; 1\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><code>&quot;umass&quot;</code></td>
+<td align="left"><span class="math inline">\(U \ge 0\)</span>, <span class="math inline">\(L + U &lt; 1\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>See also: <a href="#Normal">Normal distribution</a></p>
+<div id="censored-normal-distribution-cnorm" class="section level3">
+<h3><span class="header-section-number">4.7.1</span> Censored normal distribution (<code>&quot;cnorm&quot;</code>)</h3>
+CRPS formula:
+<span class="math display">\[\begin{align*}
+    \mathrm{CRPS}\left(F_{l}^{u}, y\right) &amp;= |y - z| + uF(-u)^2 - lF(l)^2 \\
+    &amp; \quad + z(2F(z) - 1) \\
+    &amp; \quad + 2f(z) - 2f(u)F(-u) - 2f(l)F(l) \\
+    &amp; \quad - \left(\frac{1}{\sqrt{\pi}}\right) \left(F\left(u\sqrt{2}\right) - F\left(l\sqrt{2}\right)\right), \\
+    \text{where}\quad z&amp;= \begin{cases} l, &amp; y &lt; l, \\ y, &amp; l \le y &lt; u, \\ u, &amp; y \ge u. \end{cases}
+\end{align*}\]</span>
+Censored normal distribution:
+<span class="math display">\[\begin{align*}
+  F_{l}^{u}(x) = \begin{cases} 0, &amp; x &lt; l, \\ F(x), &amp; l \leq x &lt; u, \\ 1, &amp; x \geq u, \end{cases}
+\end{align*}\]</span>
+<p>where all other symbols are as given in <a href="#GenNormal">Generalized truncated/censored normal distribution</a>.</p>
+<p>Notes:</p>
+<ul>
+<li><span class="citation">Thorarinsdottir and Gneiting (2010)</span> give a CRPS formula for a left-censored normal distribution with boundary 0.</li>
+</ul>
+</div>
+<div id="truncated-normal-distribution-tnorm" class="section level3">
+<h3><span class="header-section-number">4.7.2</span> Truncated normal distribution (<code>&quot;tnorm&quot;</code>)</h3>
+CRPS formula:
+<span class="math display">\[\begin{align*}
+    \mathrm{CRPS}\left(F_{l}^{u}, y\right) &amp;= |y - z| \\
+    &amp; \quad + \left(\frac{1}{F(u) - F(l)}\right) z\left(2F(z) - F(u) - F(l)\right) \\
+    &amp; \quad + \left(\frac{1}{F(u) - F(l)}\right) 2f(z) \\
+    &amp; \quad - \left(\frac{1}{F(u) - F(l)}\right)^2 \left(\frac{1}{\sqrt{\pi}}\right) \left(F\left(u\sqrt{2}\right) - F\left(l\sqrt{2}\right)\right), \\
+    \text{where}\quad z&amp;= \begin{cases} l, &amp; y &lt; l, \\ y, &amp; l \le y &lt; u, \\ u, &amp; y \ge u. \end{cases}
+\end{align*}\]</span>
+Truncated normal distribution:
+<span class="math display">\[\begin{align*}
+  F_{l}^{u}(x) = \begin{cases} 0, &amp; x &lt; l, \\ \frac{F(x) - F(l)}{F(u) - F(l)}, &amp; l \leq x &lt; u, \\ 1, &amp; x \geq u, \end{cases}
+\end{align*}\]</span>
+<p>where all other symbols are as given in <a href="#GenNormal">Generalized truncated/censored normal distribution</a>.</p>
+<p>Notes:</p>
+<ul>
+<li><span class="citation">Gneiting et al. (2006)</span> give a CRPS formula for a left-truncated normal distribution with boundary 0.</li>
+</ul>
+</div>
+</div>
+<div id="GenStudent" class="section level2">
+<h2><span class="header-section-number">4.8</span> Generalized truncated/censored Student’s <span class="math inline">\(t\)</span>-distribution (<code>&quot;gtct&quot;</code>)</h2>
+CRPS formula:
+<span class="math display">\[\begin{align*}
+    \mathrm{CRPS}\left(F_{l, L, \nu}^{u, U}, y\right) &amp;= |y - z| + uU^2 - lL^2 \\
+    &amp;\quad  + \left(\frac{1 - L - U}{F_\nu(u) - F_\nu(l)}\right) z\left(2F_\nu(z) - \frac{(1 - 2L)F_\nu(u) + (1 - 2U)F_\nu(l)}{1 - L - U}\right) \\
+    &amp;\quad - \left(\frac{1 - L - U}{F_\nu(u) - F_\nu(l)}\right)\left(2G_\nu(z) - 2G_\nu(u)U - 2G_\nu(l)L\right) \\
+    &amp;\quad - \left(\frac{1 - L - U}{F_\nu(u) - F_\nu(l)}\right)^2 \bar{B}_\nu \left(H_\nu(u) - H_\nu(l)\right), \\
+    \text{where}\quad z&amp;= \begin{cases} l, &amp; y &lt; l, \\ y, &amp; l \le y &lt; u, \\ u, &amp; y \ge u, \end{cases} \\
+    \mathrm{CRPS}(F_{l, L, \nu, \mu, \sigma}^{u, U}, y) &amp;= \sigma\, \mathrm{CRPS}\left(F_{(l - \mu)/\sigma, L, \nu}^{(u - \mu)/\sigma, U}, \tfrac{y - \mu}{\sigma} \right).
+\end{align*}\]</span>
+Generalized truncated/censored Student’s <span class="math inline">\(t\)</span>-distribution:
+<span class="math display">\[\begin{align*}
+  F_{l, L, \nu}^{u, U}(x) &amp;= \begin{cases} 0, &amp; x &lt; l, \\ \frac{1 - L - U}{F(u) - F(l)} F(z) - \frac{1 - L - U}{F(u) - F(l)} F(l) + L, &amp; l \leq x &lt; u, \\ 1, &amp; x \geq u, \end{cases} \\
+  F_{l, L, \nu, \mu, \sigma}^{u, U}(x) &amp;= F_{\tfrac{l - \mu}{\sigma}, L, \nu}^{\tfrac{u - \mu}{\sigma}, U}\left(\tfrac{x - \mu}{\sigma}\right), \\
+  f_\nu(x) &amp;= \frac{1}{\sqrt{\nu}B\left(\tfrac{1}{2}, \tfrac{\nu}{2}\right)}\left(1 + \frac{x^2}{\nu}\right)^{-(\nu + 1)/2}, \\
+  F_\nu(x) &amp;= \frac{1}{2} + \frac{x\ {}_2F_1\left(\tfrac{1}{2},\tfrac{\nu+1}{2};\tfrac{3}{2};-\tfrac{x^2}{\nu}\right)}{\sqrt{\nu} B\left(\tfrac{1}{2},\tfrac{\nu}{2}\right)}, \\
+  G_\nu(x) &amp;= -\left(\frac{\nu + x^2}{\nu - 1}\right) f_\nu(x), \\
+  H_\nu(x) &amp;= \frac{1}{2} + \frac{1}{2}\, \mathrm{sgn}(x)\, I \left(\tfrac{x^2}{\nu + x^2}; \tfrac{1}{2}, \nu - \tfrac{1}{2}\right), \\
+  \bar{B}_\nu &amp;= \left(\frac{2\sqrt{\nu}}{\nu - 1}\right)\frac{B\left(\tfrac{1}{2}, \nu - \tfrac{1}{2}\right)}{B\left(\tfrac{1}{2}, \tfrac{\nu}{2}\right)^2}.
+\end{align*}\]</span>
+<p>Parameters:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Name</th>
+<th align="left">Domain</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>&quot;df&quot;</code></td>
+<td align="left"><span class="math inline">\(\nu &gt; 0\)</span> (for <span class="math inline">\(\nu \le 1\)</span> the CRPS is undefined)</td>
+</tr>
+<tr class="even">
+<td align="left"><code>&quot;location&quot;</code></td>
+<td align="left"><span class="math inline">\(\mu \in \mathbb{R}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>&quot;scale&quot;</code></td>
+<td align="left"><span class="math inline">\(\sigma &gt; 0\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><code>&quot;lower&quot;</code></td>
+<td align="left"><span class="math inline">\(l \in \mathbb{R}\)</span>, <span class="math inline">\(l &lt; u\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>&quot;upper&quot;</code></td>
+<td align="left"><span class="math inline">\(u \in \mathbb{R}\)</span>, <span class="math inline">\(l &lt; u\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><code>&quot;lmass&quot;</code></td>
+<td align="left"><span class="math inline">\(L \ge 0\)</span>, <span class="math inline">\(L + U &lt; 1\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>&quot;umass&quot;</code></td>
+<td align="left"><span class="math inline">\(U \ge 0\)</span>, <span class="math inline">\(L + U &lt; 1\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Mathematical functions:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Symbol</th>
+<th align="left">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\({}_2F_1\)</span></td>
+<td align="left">hypergeometric function</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(B\)</span></td>
+<td align="left">beta function</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(I\)</span></td>
+<td align="left">regularized incomplete beta function</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(\mathrm{sgn}\)</span></td>
+<td align="left">sign function</td>
+</tr>
+</tbody>
+</table>
+<p>See also: <a href="#Student">Student’s <span class="math inline">\(t\)</span>-distribution</a></p>
+<div id="censored-t-distribution-ct" class="section level3">
+<h3><span class="header-section-number">4.8.1</span> Censored <span class="math inline">\(t\)</span>-distribution (<code>&quot;ct&quot;</code>)</h3>
+CRPS formula:
+<span class="math display">\[\begin{align*}
+    \mathrm{CRPS}\left(F_{l, \nu}^{u}, y\right) &amp;= |y - z| + uF_\nu(-u)^2 - lF_\nu(l)^2 \\
+    &amp; \quad + z(2F_\nu(z) - 1) \\
+    &amp; \quad - 2G_\nu(z) + 2G_\nu(u)F_\nu(-u) + 2G_\nu(l)F_\nu(l) \\
+    &amp; \quad - \bar{B}_\nu \left(H_\nu(u) - H_\nu(l) \right), \\
+    \text{where}\quad z&amp;= \begin{cases} l, &amp; y &lt; l, \\ y, &amp; l \le y &lt; u, \\ u, &amp; y \ge u. \end{cases}
+\end{align*}\]</span>
+Censored Student’s <span class="math inline">\(t\)</span>-distribution:
+<span class="math display">\[\begin{align*}
+  F_{l, \nu}^{u}(x) &amp;= \begin{cases} 0, &amp; x &lt; l, \\ F_\nu(x), &amp; l \leq x &lt; u, \\ 1, &amp; x \geq u, \end{cases}
+\end{align*}\]</span>
+<p>where all other symbols are as given in <a href="#GenStudent">Generalized truncated/censored Student’s <span class="math inline">\(t\)</span>-distribution</a>.</p>
+</div>
+<div id="truncated-t-distribution-tt" class="section level3">
+<h3><span class="header-section-number">4.8.2</span> Truncated <span class="math inline">\(t\)</span>-distribution (<code>&quot;tt&quot;</code>)</h3>
+CRPS formula:
+<span class="math display">\[\begin{align*}
+    \mathrm{CRPS}\left(F_{l, \nu}^{u}, y\right) &amp;= |y - z| \\
+    &amp; \quad + \left(\frac{1}{F_\nu(u) - F_\nu(l)}\right) z\left(2F_\nu(z) - F_\nu(u) - F_\nu(l)\right) \\
+    &amp; \quad - \left(\frac{1}{F_\nu(u) - F_\nu(l)}\right) 2G_\nu(z) \\
+    &amp; \quad - \left(\frac{1}{F_\nu(u) - F_\nu(l)}\right)^2 \bar{B}_\nu \left(H_\nu(u) - H_\nu(l)\right), \\
+    \text{where}\quad z&amp;= \begin{cases} l, &amp; y &lt; l, \\ y, &amp; l \le y &lt; u, \\ u, &amp; y \ge u. \end{cases}
+\end{align*}\]</span>
+Truncated Student’s <span class="math inline">\(t\)</span>-distribution:
+<span class="math display">\[\begin{align*}
+  F_{l, \nu}^{u}(x) &amp;= \begin{cases} 0, &amp; x &lt; l, \\ \frac{F_\nu(x) - F_\nu(l)}{F_\nu(u) - F_\nu(l)}, &amp; l \leq x &lt; u, \\ 1, &amp; x \geq u, \end{cases}
+\end{align*}\]</span>
+<p>where all other symbols are as given in <a href="#GenStudent">Generalized truncated/censored Student’s <span class="math inline">\(t\)</span>-distribution</a>.</p>
+</div>
+</div>
+</div>
+<div id="distributions-for-discrete-variables" class="section level1">
+<h1><span class="header-section-number">5</span> Distributions for discrete variables</h1>
+<div id="negative-binomial-distribution-nbinom" class="section level2">
+<h2><span class="header-section-number">5.1</span> Negative binomial distribution (<code>&quot;nbinom&quot;</code>)</h2>
+CRPS formula:
+<span class="math display">\[\begin{align*}
+    \mathrm{CRPS}(F_{n, p}, y) &amp;= y\left(2F_{n, p}(y) - 1\right) \\
+    &amp;\quad - \frac{n(1-p)}{p^2}\left(p\left(2F_{n+1,p}(y-1) - 1\right) + {\ }_2F_1\left(n+1, \tfrac{1}{2}; 2; -\tfrac{4(1-p)}{p^2}\right)\right)
+\end{align*}\]</span>
+Negative binomial distribution:
+<span class="math display">\[\begin{align*}
+  F_{n, p}(x) &amp;= \begin{cases} I\left(p; n, \lfloor x+1\rfloor\right), &amp; x \geq 0, \\ 0, &amp; x &lt; 0, \end{cases} \\
+  f_{n, p}(x) &amp;= \begin{cases}\frac{\Gamma(x+n)}{\Gamma(n) x!} p^n (1-p)^x, &amp; x = 0, 1, 2, \ldots, \\ 0, &amp; \text{otherwise}. \end{cases}
+\end{align*}\]</span>
+<p>Parameters:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Name</th>
+<th align="left">Domain</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>&quot;size&quot;</code></td>
+<td align="left"><span class="math inline">\(n &gt; 0\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><code>&quot;prob&quot;</code></td>
+<td align="left"><span class="math inline">\(p \in (0, 1]\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Mathematical functions:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Symbol</th>
+<th align="left">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\(\lfloor\cdot\rfloor\)</span></td>
+<td align="left">floor function</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\({}_2F_1\)</span></td>
+<td align="left">hypergeometric function</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(I\)</span></td>
+<td align="left">regularized incomplete beta function</td>
+</tr>
+</tbody>
+</table>
+<p>Notes:</p>
+<ul>
+<li><span class="citation">Wei and Held (2014)</span> is the original source of this CRPS formula.</li>
+</ul>
+</div>
+<div id="poisson-distribution-pois" class="section level2">
+<h2><span class="header-section-number">5.2</span> Poisson distribution (<code>&quot;pois&quot;</code>)</h2>
+CRPS formula:
+<span class="math display">\[\begin{align*}
+    \mathrm{CRPS}(F_\lambda, y) &amp;= (y - \lambda) \left(2F_\lambda(y) - 1\right) + 2\lambda f_\lambda\left(\lfloor y\rfloor\right) - \lambda \exp(-2\lambda)\left(I_0(2\lambda) + I_1(2\lambda)\right)
+\end{align*}\]</span>
+Poisson distribution:
+<span class="math display">\[\begin{align*}
+  F_\lambda(x) &amp;= \begin{cases} \frac{\Gamma_u(\lfloor x+1\rfloor, \lambda)}{\Gamma(\lfloor x+1 \rfloor)}, &amp; x \geq 0,\\ 0, &amp; x &lt; 0, \end{cases}\\
+  f_\lambda(x) &amp;= \begin{cases}\frac{\lambda^x}{x!}e^{-\lambda}, &amp; x = 0, 1, 2, \ldots, \\ 0, &amp; \text{otherwise}, \end{cases}
+\end{align*}\]</span>
+<p>Parameter:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Name</th>
+<th align="left">Domain</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>&quot;lambda&quot;</code></td>
+<td align="left"><span class="math inline">\(\lambda &gt; 0\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Mathematical functions:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Symbol</th>
+<th align="left">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\(\lfloor \cdot \rfloor\)</span></td>
+<td align="left">floor function</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(\Gamma\)</span></td>
+<td align="left">gamma function</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(\Gamma_u\)</span></td>
+<td align="left">upper incomplete gamma function</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(I_m\)</span></td>
+<td align="left">modified Bessel function of the first kind</td>
+</tr>
+</tbody>
+</table>
+<p>Notes:</p>
+<ul>
+<li><span class="citation">Wei and Held (2014)</span> is the original source of this CRPS formula.</li>
+</ul>
+</div>
+</div>
+<div id="references" class="section level1 unnumbered">
+<h1>References</h1>
+<div id="refs" class="references">
+<div id="ref-baran2014">
+<p>Baran, S, and S Lerch. 2015. “Log-Normal Distribution Based EMOS Models for Probabilistic Wind Speed Forecasting.” <em>Quarterly Journal of the Royal Meteorological Society</em> 141: 2289–99.</p>
+</div>
+<div id="ref-friederichs2012">
+<p>Friederichs, P, and T L Thorarinsdottir. 2012. “Forecast Verification for Extreme Value Distributions with an Application to Probabilistic Peak Wind Prediction.” <em>Environmetrics</em> 23: 579–94.</p>
+</div>
+<div id="ref-gneiting2010">
+<p>Gneiting, T, and T L Thorarinsdottir. 2010. “Predicting Inflation: Professional Experts Versus No-Change Forecasts.” <em>ArXiv Preprint ArXiv:1010.2318</em>.</p>
+</div>
+<div id="ref-gneiting2006">
+<p>Gneiting, T, K Larson, K Westrick, M G Genton, and E Aldrich. 2006. “Calibrated Probabilistic Forecasting at the Stateline Wind Energy Center: The Regime-Switching Space–time Method.” <em>Journal of the American Statistical Association</em> 101: 968–79.</p>
+</div>
+<div id="ref-gneiting2005">
+<p>Gneiting, T, A E Raftery, A H Westveld III, and T Goldman. 2005. “Calibrated Probabilistic Forecasting Using Ensemble Model Output Statistics and Minimum CRPS Estimation.” <em>Monthly Weather Review</em> 133: 1098–1118.</p>
+</div>
+<div id="ref-grimit2006">
+<p>Grimit, E P, T Gneiting, V J Berrocal, and N A Johnson. 2006. “The Continuous Ranked Probability Score for Circular Variables and Its Application to Mesoscale Forecast Ensemble Verification.” <em>Quarterly Journal of the Royal Meteorological Society</em> 132: 2925–42.</p>
+</div>
+<div id="ref-moeller2013">
+<p>Möller, D, and M Scheuerer. 2015. “Probabilistic Wind Speed Forecasting on a Grid Based on Ensemble Model Output Statistics.” <em>Annals of Applied Statistics</em> 9: 1328–49.</p>
+</div>
+<div id="ref-taillardat2016">
+<p>Taillardat, M, O Mestre, M Zamo, and P Naveau. 2016. “Calibrated Ensemble Forecasts Using Quantile Regression Forests and Ensemble Model Output Statistics.” <em>Monthly Weather Review</em> 144: 2375–93.</p>
+</div>
+<div id="ref-thorarinsdottir2010">
+<p>Thorarinsdottir, T L, and T Gneiting. 2010. “Probabilistic Forecasts of Wind Speed: Ensemble Model Output Statistics by Using Heteroscedastic Censored Regression.” <em>Journal of the Royal Statistical Society: Series A (Statistics in Society)</em> 173: 371–88.</p>
+</div>
+<div id="ref-wei2014">
+<p>Wei, W, and L Held. 2014. “Calibration Tests for Count Data.” <em>TEST</em> 23: 787–805.</p>
+</div>
+</div>
+</div>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

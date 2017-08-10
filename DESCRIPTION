@@ -2,8 +2,8 @@ Package: scoringRules
 Type: Package
 Title: Scoring Rules for Parametric and Simulated Distribution
         Forecasts
-Version: 0.9.2
-Date: 2016-12-22
+Version: 0.9.3
+Date: 2017-08-10
 Author: Alexander Jordan, Fabian Krueger, Sebastian Lerch
 Maintainer: Fabian Krueger <Fabian.Krueger83@gmail.com>
 Description: Dictionary-like reference for computing scoring rules in a wide
@@ -13,11 +13,11 @@ URL: https://github.com/FK83/scoringRules
 License: GPL (>= 2)
 Imports: Rcpp (>= 0.12.0), methods, MASS
 Depends: R (>= 3.00)
-Suggests: gsl (>= 1.8-3), hypergeo(>= 1.0), knitr, rmarkdown
+Suggests: gsl (>= 1.8-3), hypergeo(>= 1.0), knitr, rmarkdown, testthat
 LinkingTo: Rcpp, RcppArmadillo
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1
 VignetteBuilder: knitr
 NeedsCompilation: yes
-Packaged: 2017-01-11 12:50:31 UTC; fabian
+Packaged: 2017-08-10 08:17:15 UTC; fabian
 Repository: CRAN
-Date/Publication: 2017-01-11 17:13:27
+Date/Publication: 2017-08-10 15:43:58 UTC
