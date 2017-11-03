@@ -4,12 +4,15 @@
 \alias{scores_sample_univ}
 \alias{crps_sample}
 \alias{logs_sample}
+\alias{dss_sample}
 \title{Scoring Rules for Simulated Forecast Distributions}
 \usage{
 crps_sample(y, dat, method = "edf", w = NULL, bw = NULL,
   num_int = FALSE, show_messages = TRUE)
 
-logs_sample(y, dat, bw = NULL, show_messages = TRUE)
+logs_sample(y, dat, bw = NULL, show_messages = FALSE)
+
+dss_sample(y, dat, w = NULL)
 }
 \arguments{
 \item{y}{vector of realized values.}
@@ -21,9 +24,9 @@ of simulation draws from forecast distribution.}
 "edf" (empirical distribution function) and
 "kde" (kernel density estimation).}
 
-\item{w}{vector or matrix (matching \code{dat}) of weights for method \code{"edf"}.}
+\item{w}{optional; vector or matrix (matching \code{dat}) of weights for method \code{"edf"}.}
 
-\item{bw}{vector (matching \code{y}) of bandwidths for kernel density
+\item{bw}{optional; vector (matching \code{y}) of bandwidths for kernel density
 estimation; see details.}
 
 \item{num_int}{logical; if TRUE numerical integration is used for method \code{"kde"}.}
@@ -35,7 +38,7 @@ warnings and errors).}
 Value of the score. \emph{A lower score indicates a better forecast.}
 }
 \description{
-Calculate scores (CRPS, LogS) given observations and draws from the predictive distributions.
+Calculate scores (CRPS, LogS, DSS) given observations and draws from the predictive distributions.
 }
 \details{
 For a vector \code{y} of length n, \code{dat} should be given as a matrix
