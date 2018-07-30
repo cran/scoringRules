@@ -1,4 +1,3 @@
-#' @export ar_ms run_mcstudy run_casestudy plot.mcstudy plot.casestudy
 #' @importFrom Rcpp evalCpp
 #' @importFrom MASS mvrnorm
 #' @importFrom graphics axis legend lines mtext plot points segments title

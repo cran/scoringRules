@@ -5,8 +5,8 @@
 #' 
 #' @param y vector of realized values.
 #' @param family string which specifies the parametric family; current options:
-#' \code{"2pexp", "2pnorm", "beta", "clogis", "cnorm", "ct", "exp", "expM",
-#' "exponential", "gamma", "gev", "gpd", "gtclogis", "gtcnorm", "gtct", "lapl",
+#' \code{"2pexp", "2pnorm", "beta", "binom", "clogis", "cnorm", "ct", "exp", "expM",
+#' "exponential", "gamma", "gev", "gpd", "gtclogis", "gtcnorm", "gtct", "hyper", "lapl",
 #' "laplace", "llapl", "llogis", "lnorm", "log-laplace", "log-logistic",
 #' "log-normal", "logis", "logistic", "mixnorm", "mixture-normal", "nbinom",
 #' "negative-binomial", "norm", "normal", "pois", "poisson", "t", "tlogis",
@@ -83,8 +83,9 @@
 #' @author Alexander Jordan, Fabian Krueger, Sebastian Lerch
 #' 
 #' @details
-#' Mathematical details are available in the \emph{CRPS formulas} vignette
-#' to the \emph{scoringRules} package.
+#' Mathematical details are available in Appendix A of the vignette
+#' \emph{Evaluating probabilistic forecasts with scoringRules} that
+#' accompanies the package.
 #' 
 #' The parameters supplied to each of the functions are numeric vectors:
 #' \enumerate{
@@ -250,6 +251,17 @@
 #'    }
 #'  \item Distributions of discrete variables:
 #'    \itemize{
+#'      \item 
+#'        \code{"binom"}:
+#'        \code{size} (number of trials (zero or more)),
+#'        \code{prob} (probability of success on each trial);
+#'        see \code{\link{crps_binom}}
+#'      \item 
+#'        \code{"hyper"}:
+#'        \code{m} (the number of white balls in the urn),
+#'        \code{n} (the number of black balls in the urn),
+#'        \code{k} (the number of balls drawn from the urn);
+#'        see \code{\link{crps_hyper}}
 #'      \item
 #'        \code{"negative-binomial"} or \code{"nbinom"}:
 #'        \code{size} (positive dispersion parameter),
@@ -279,8 +291,6 @@
 #' weights <- matrix(rep(1/50, 20*50), nrow = 20)
 #' crps(y = rnorm(20), family = "mixnorm", m = mval, s = sdval, w = weights)
 #' 
-#' ## Mathematical details
-#' vignette("crpsformulas", "scoringRules")
 #' 
 #' @seealso \code{\link{logs.numeric}}
 #' 
@@ -306,3 +316,4 @@ crps.numeric <- function(y, family, ...) {
   
   out
 }
+

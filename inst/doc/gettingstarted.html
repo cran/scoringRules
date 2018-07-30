@@ -12,7 +12,7 @@
 
 <meta name="author" content="Alexander Jordan, Fabian Krüger, Sebastian Lerch" />
 
-<meta name="date" content="2017-11-03" />
+<meta name="date" content="2018-07-30" />
 
 <title>R package scoringRules: Getting started</title>
 
@@ -70,11 +70,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h1 class="title toc-ignore">R package scoringRules: Getting started</h1>
 <h4 class="author"><em>Alexander Jordan, Fabian Krüger, Sebastian Lerch</em></h4>
-<h4 class="date"><em>2017-11-03</em></h4>
+<h4 class="date"><em>2018-07-30</em></h4>
 
 
 
-<p>This vignette provides a two-page introduction to the <em>scoringRules</em> package; it summarizes the paper ‘Evaluating probabilistic forecasts with the scoringRules package’ (Jordan, Krüger, and Lerch, 2017, available at XXX). A second vignette called <em>closedforms</em> provides mathematical details.</p>
+<p>This vignette provides a two-page introduction to the <em>scoringRules</em> package. For a more detailed introduction, see the paper ‘Evaluating probabilistic forecasts with scoringRules’ (Jordan, Krüger, and Lerch, <em>Journal of Statistical Software</em>, forthcoming) which is available as a further vignette to <em>scoringRules</em>.</p>
 <div id="background" class="section level1">
 <h1>Background</h1>
 <p>Forecasting a continuous random variable, such as temperature (in degrees Celsius) or the inflation rate (in percent) is important in many situations. Since forecasts are usually surrounded by uncertainty, it makes sense to state forecast distributions, rather than point forecasts. The <em>scoringRules</em> package offers mathematical tools to evaluate a forecast distribution, <span class="math inline">\(F\)</span>, after an outcome <span class="math inline">\(y\)</span> has realized. To this end, we use scoring rules which assign a penalty score <span class="math inline">\(S(y, F)\)</span> to the realization/forecast pair; a smaller score corresponds to a better forecast. See Gneiting and Katzfuss (‘Probabilistic Forecasting’, <em>Annual Review of Statistics and Its Application</em>, 2014) for an introduction to the relevant statistical literature.</p>
@@ -91,11 +91,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="co"># CRPS of a normal distribution with mean = standard deviation = 2, outcome is zero</span>
 <span class="kw">crps</span>(<span class="dt">y =</span> <span class="dv">0</span>, <span class="dt">family =</span> <span class="st">&quot;normal&quot;</span>, <span class="dt">mean =</span> <span class="dv">2</span>, <span class="dt">sd =</span> <span class="dv">2</span>)</code></pre></div>
 <pre><code>## [1] 1.204883</code></pre>
-<p>As documented under <code>?crps</code>, the parametric family used in the example is one of 22 choices currently implemented in <em>scoringRules</em>:</p>
+<p>As documented under <code>?crps</code>, the parametric family used in the example is one of the following choices currently implemented in <em>scoringRules</em>:</p>
 <ul>
-<li>Normal, Mixture of normals, Two-piece normal, Log-normal, Generalized truncated/censored normal, (Scaled) Student t, Generalized truncated/censored Student t, Laplace, Log-Laplace, Logistic, Log-logistic, Generalized truncated/censored logistic, Exponential, Exponential with point mass, Two-piece exponential, Beta, Gamma, Uniform, Generalized extreme value, Generalized Pareto, Negative binomial, Poisson</li>
+<li>Normal, Mixture of normals, Two-piece normal, Log-normal, Generalized truncated/censored normal, (Scaled) Student t, Generalized truncated/censored Student t, Laplace, Log-Laplace, Logistic, Log-logistic, Generalized truncated/censored logistic, Exponential, Exponential with point mass, Two-piece exponential, Beta, Gamma, Uniform, Generalized extreme value, Generalized Pareto, Binomial, Hypergeometric, Negative binomial, Poisson</li>
 </ul>
-<p>We provide details and analytical CRPS formulas in the <em>closedforms</em> vignette. Whenever possible, our syntax and parametrization closely follow base R. For distributions not supported by base R, we have created documentation pages with details; see for example <code>?f2pnorm</code>.</p>
+<p>We provide analytical CRPS formulas in Appendix A of the vignette ‘Evaluating Probabilistic Forecasts with scoringRules’. Whenever possible, our syntax and parametrization closely follow base R. For distributions not supported by base R, we have created documentation pages with details; see for example <code>?f2pnorm</code>.</p>
 </div>
 <div id="example-2-simulated-forecast-distribution" class="section level1">
 <h1>Example 2: Simulated forecast distribution</h1>
