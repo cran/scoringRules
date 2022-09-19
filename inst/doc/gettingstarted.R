@@ -1,4 +1,4 @@
-## ----echo = FALSE, fig.align='center', fig.width = 5--------------------------
+## ----echo = FALSE, fig.align='center', fig.width = 4.5, fig.height = 3--------
 
 grid <- seq(from = -5, to = 10, length.out = 1000)
 plot(x = grid, y = dnorm(grid, mean = 2, sd = 2), bty = "n", type = "l", xlab = "Value", ylab = "Density")
@@ -9,7 +9,7 @@ library(scoringRules)
 # CRPS of a normal distribution with mean = standard deviation = 2, outcome is zero
 crps(y = 0, family = "normal", mean = 2, sd = 2)
 
-## ----echo = FALSE, fig.align='center', fig.width = 5--------------------------
+## ----echo = FALSE, fig.align='center', fig.width = 4.5, fig.height = 3--------
 # Load data
 data(gdp_mcmc)
 

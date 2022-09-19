@@ -6,6 +6,11 @@
 
 using namespace Rcpp;
 
+#ifdef RCPP_USE_GLOBAL_ROSTREAM
+Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
+Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
+#endif
+
 // auxcrpsC
 double auxcrpsC(double m, double s);
 RcppExport SEXP _scoringRules_auxcrpsC(SEXP mSEXP, SEXP sSEXP) {
@@ -251,15 +256,106 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// energyscoreC
-double energyscoreC(arma::colvec y, arma::mat dat);
-RcppExport SEXP _scoringRules_energyscoreC(SEXP ySEXP, SEXP datSEXP) {
+// vsC
+double vsC(arma::colvec y, arma::mat dat, double p);
+RcppExport SEXP _scoringRules_vsC(SEXP ySEXP, SEXP datSEXP, SEXP pSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< arma::colvec >::type y(ySEXP);
     Rcpp::traits::input_parameter< arma::mat >::type dat(datSEXP);
-    rcpp_result_gen = Rcpp::wrap(energyscoreC(y, dat));
+    Rcpp::traits::input_parameter< double >::type p(pSEXP);
+    rcpp_result_gen = Rcpp::wrap(vsC(y, dat, p));
+    return rcpp_result_gen;
+END_RCPP
+}
+// vsC_w_vs
+double vsC_w_vs(arma::colvec y, arma::mat dat, arma::mat w_vs, double p);
+RcppExport SEXP _scoringRules_vsC_w_vs(SEXP ySEXP, SEXP datSEXP, SEXP w_vsSEXP, SEXP pSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::colvec >::type y(ySEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type dat(datSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type w_vs(w_vsSEXP);
+    Rcpp::traits::input_parameter< double >::type p(pSEXP);
+    rcpp_result_gen = Rcpp::wrap(vsC_w_vs(y, dat, w_vs, p));
+    return rcpp_result_gen;
+END_RCPP
+}
+// energyscoreC
+double energyscoreC(arma::colvec y, arma::mat dat, NumericVector w);
+RcppExport SEXP _scoringRules_energyscoreC(SEXP ySEXP, SEXP datSEXP, SEXP wSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::colvec >::type y(ySEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type dat(datSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type w(wSEXP);
+    rcpp_result_gen = Rcpp::wrap(energyscoreC(y, dat, w));
+    return rcpp_result_gen;
+END_RCPP
+}
+// esC_xx
+double esC_xx(arma::mat dat, NumericVector w);
+RcppExport SEXP _scoringRules_esC_xx(SEXP datSEXP, SEXP wSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::mat >::type dat(datSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type w(wSEXP);
+    rcpp_result_gen = Rcpp::wrap(esC_xx(dat, w));
+    return rcpp_result_gen;
+END_RCPP
+}
+// esC_xy
+double esC_xy(arma::colvec y, arma::mat dat, NumericVector w);
+RcppExport SEXP _scoringRules_esC_xy(SEXP ySEXP, SEXP datSEXP, SEXP wSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::colvec >::type y(ySEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type dat(datSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type w(wSEXP);
+    rcpp_result_gen = Rcpp::wrap(esC_xy(y, dat, w));
+    return rcpp_result_gen;
+END_RCPP
+}
+// mmdscoreC
+double mmdscoreC(arma::colvec y, arma::mat dat, NumericVector w);
+RcppExport SEXP _scoringRules_mmdscoreC(SEXP ySEXP, SEXP datSEXP, SEXP wSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::colvec >::type y(ySEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type dat(datSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type w(wSEXP);
+    rcpp_result_gen = Rcpp::wrap(mmdscoreC(y, dat, w));
+    return rcpp_result_gen;
+END_RCPP
+}
+// mmdsC_xx
+double mmdsC_xx(arma::mat dat, NumericVector w);
+RcppExport SEXP _scoringRules_mmdsC_xx(SEXP datSEXP, SEXP wSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::mat >::type dat(datSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type w(wSEXP);
+    rcpp_result_gen = Rcpp::wrap(mmdsC_xx(dat, w));
+    return rcpp_result_gen;
+END_RCPP
+}
+// mmdsC_xy
+double mmdsC_xy(arma::colvec y, arma::mat dat, NumericVector w);
+RcppExport SEXP _scoringRules_mmdsC_xy(SEXP ySEXP, SEXP datSEXP, SEXP wSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::colvec >::type y(ySEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type dat(datSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type w(wSEXP);
+    rcpp_result_gen = Rcpp::wrap(mmdsC_xy(y, dat, w));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -283,7 +379,14 @@ static const R_CallMethodDef CallEntries[] = {
     {"_scoringRules_drawMultinomC", (DL_FUNC) &_scoringRules_drawMultinomC, 1},
     {"_scoringRules_filterMarkovMixtureC", (DL_FUNC) &_scoringRules_filterMarkovMixtureC, 3},
     {"_scoringRules_euclnormC", (DL_FUNC) &_scoringRules_euclnormC, 1},
-    {"_scoringRules_energyscoreC", (DL_FUNC) &_scoringRules_energyscoreC, 2},
+    {"_scoringRules_vsC", (DL_FUNC) &_scoringRules_vsC, 3},
+    {"_scoringRules_vsC_w_vs", (DL_FUNC) &_scoringRules_vsC_w_vs, 4},
+    {"_scoringRules_energyscoreC", (DL_FUNC) &_scoringRules_energyscoreC, 3},
+    {"_scoringRules_esC_xx", (DL_FUNC) &_scoringRules_esC_xx, 2},
+    {"_scoringRules_esC_xy", (DL_FUNC) &_scoringRules_esC_xy, 3},
+    {"_scoringRules_mmdscoreC", (DL_FUNC) &_scoringRules_mmdscoreC, 3},
+    {"_scoringRules_mmdsC_xx", (DL_FUNC) &_scoringRules_mmdsC_xx, 2},
+    {"_scoringRules_mmdsC_xy", (DL_FUNC) &_scoringRules_mmdsC_xy, 3},
     {NULL, NULL, 0}
 };
 

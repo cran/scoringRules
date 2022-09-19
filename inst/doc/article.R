@@ -16,7 +16,12 @@ set.seed(42)
 
 # Required packages
 library(scoringRules)
-library(crch)
+if (requireNamespace("crch", quietly = TRUE)) {
+  use_crch <- TRUE
+  library(crch)
+  } else {
+  use_crch <- FALSE
+}
 
 ## ----Section-Package-design-and-functionality, echo=FALSE-----------
 
@@ -130,121 +135,139 @@ lines(mgrid, logs_approx[1, ], col = "purple", lwd = 2)
 ## ----Subsection-Probabilistic-weather-forecasting-via-ensemble-post-processing, echo=FALSE----
 
 ## ----Prepare-post-processing-example--------------------------------
-library("crch")
-data("RainIbk", package = "crch")
-RainIbk <- sqrt(RainIbk)
-ensfc <- RainIbk[, grep('^rainfc', names(RainIbk))]
-RainIbk$ensmean <- apply(ensfc, 1, mean)
-RainIbk$enssd <- apply(ensfc, 1, sd)
-RainIbk <- subset(RainIbk, enssd > 0)
+if (use_crch){
+  library("crch")
+  data("RainIbk", package = "crch")
+  RainIbk <- sqrt(RainIbk)
+  ensfc <- RainIbk[, grep('^rainfc', names(RainIbk))]
+  RainIbk$ensmean <- apply(ensfc, 1, mean)
+  RainIbk$enssd <- apply(ensfc, 1, sd)
+  RainIbk <- subset(RainIbk, enssd > 0)  
+} 
 
 ## ----Splitting-data-------------------------------------------------
-data_train <- subset(RainIbk, as.Date(rownames(RainIbk)) <= "2004-11-30")
-data_eval <- subset(RainIbk, as.Date(rownames(RainIbk)) >= "2005-01-01")
+if (use_crch){
+  data_train <- subset(RainIbk, as.Date(rownames(RainIbk)) <= "2004-11-30")
+  data_eval <- subset(RainIbk, as.Date(rownames(RainIbk)) >= "2005-01-01")  
+} 
 
 ## ----Forecasting-Gauss----------------------------------------------
-CRCHgauss <- crch(rain ~ ensmean | log(enssd), data_train,
+if (use_crch){
+  CRCHgauss <- crch(rain ~ ensmean | log(enssd), data_train,
   dist = "gaussian", left = 0)
-gauss_mu <- predict(CRCHgauss, data_eval, type = "location")
-gauss_sc <- predict(CRCHgauss, data_eval, type = "scale")
+  gauss_mu <- predict(CRCHgauss, data_eval, type = "location")
+  gauss_sc <- predict(CRCHgauss, data_eval, type = "scale")
+} 
 
 ## ----Forecasting-logis-stud, echo=FALSE-----------------------------
-CRCHlogis <- crch(rain ~ ensmean | log(enssd), data = data_train, 
-left = 0, dist = "logistic")
-CRCHstud <- crch(rain ~ ensmean | log(enssd), data = data_train, 
-left = 0, dist = "student")
-logis_mu <- predict(CRCHlogis, data_eval, type = "location")
-logis_sc <- predict(CRCHlogis, data_eval, type = "scale")
-stud_mu <- predict(CRCHstud, data_eval, type = "location")
-stud_sc <- predict(CRCHstud, data_eval, type = "scale")
-stud_df <- CRCHstud$df
+if (use_crch){
+  CRCHlogis <- crch(rain ~ ensmean | log(enssd), data = data_train, 
+                    left = 0, dist = "logistic")
+  CRCHstud <- crch(rain ~ ensmean | log(enssd), data = data_train, 
+                   left = 0, dist = "student")
+  logis_mu <- predict(CRCHlogis, data_eval, type = "location")
+  logis_sc <- predict(CRCHlogis, data_eval, type = "scale")
+  stud_mu <- predict(CRCHstud, data_eval, type = "location")
+  stud_sc <- predict(CRCHstud, data_eval, type = "scale")
+  stud_df <- CRCHstud$df
+} 
 
 ## ----Forecasting-raw------------------------------------------------
-ens_fc <- data_eval[, grep('^rainfc', names(RainIbk))]
+if (use_crch){
+  ens_fc <- data_eval[, grep('^rainfc', names(RainIbk))]  
+} 
 
 ## ----Post-processing-example-illustration, echo=FALSE, dev='pdf', fig.width=10.4, fig.height = 3.7, fig.align="center", out.width="\\linewidth"----
 # Layout
-m <- matrix(c(1, 2, 3), nrow = 1)
-layout(mat = m, widths = c(3.55, 2.95, 3.90))
-par(pty = "s", cex = 1.1)
+if (use_crch){
+  m <- matrix(c(1, 2, 3), nrow = 1)
+  layout(mat = m, widths = c(3.55, 2.95, 3.90))
+  par(pty = "s", cex = 1.1)
 
-# Looping through forecast cases
-ID.list <- c(206,953,2564)
-for(ID in ID.list){
-  col.logis <- "blue"
-  col.gauss <- "green3"
-  col.stud <- "darkorange"
+  # Looping through forecast cases
+  ID.list <- c(206,953,2564)
+  for(ID in ID.list){
+    col.logis <- "blue"
+    col.gauss <- "green3"
+    col.stud <- "darkorange"
 
-  # Forecast densities
-  z <- seq(0,10,0.01)
-  flogis.plot <- suppressWarnings(
-    flogis(z, logis_mu[ID], logis_sc[ID], lower = 0, lmass = "cens"))
-  flogis.p0 <- plogis(0, logis_mu[ID], logis_sc[ID])
-  fnorm.plot <- suppressWarnings(
-    fnorm(z, gauss_mu[ID], gauss_sc[ID], lower = 0, lmass = "cens"))
-  fnorm.p0 <- pnorm(0, gauss_mu[ID], gauss_sc[ID])
-  fstud.plot <- suppressWarnings(
-    ft(z, stud_df, stud_mu[ID], stud_sc[ID], lower = 0, lmass = "cens"))
-  fstud.p0 <- pt(-stud_mu[ID] / stud_sc[ID], stud_df)
+    # Forecast densities
+    z <- seq(0,10,0.01)
+    flogis.plot <- suppressWarnings(
+      flogis(z, logis_mu[ID], logis_sc[ID], lower = 0, lmass = "cens"))
+      flogis.p0 <- plogis(0, logis_mu[ID], logis_sc[ID])
+      fnorm.plot <- suppressWarnings(
+      fnorm(z, gauss_mu[ID], gauss_sc[ID], lower = 0, lmass = "cens"))
+      fnorm.p0 <- pnorm(0, gauss_mu[ID], gauss_sc[ID])
+      fstud.plot <- suppressWarnings(
+      ft(z, stud_df, stud_mu[ID], stud_sc[ID], lower = 0, lmass = "cens"))
+      fstud.p0 <- pt(-stud_mu[ID] / stud_sc[ID], stud_df)
 
-  # Reset margins  
-  if (ID == ID.list[1]) par(mai = c(0.9, 0.9, 0.3, 0.15))
-  if (ID == ID.list[2]) par(mai = c(0.9, 0.3, 0.3, 0.15))
-  if (ID == ID.list[3]) par(mai = c(0.9, 0.3, 0.3, 1.1))
+    # Reset margins  
+    if (ID == ID.list[1]) par(mai = c(0.9, 0.9, 0.3, 0.15))
+    if (ID == ID.list[2]) par(mai = c(0.9, 0.3, 0.3, 0.15))
+    if (ID == ID.list[3]) par(mai = c(0.9, 0.3, 0.3, 1.1))
   
-  # Initializing plot
-  plot(NULL, type = "n", bty = "n", xaxt = "n", yaxt = "n",
-    ylim = c(-0.025, 0.5), xlim = c(-0.4,10),
-    xlab = "Precipitation amount in mm",
-	ylab = ifelse(ID == ID.list[1], "Density", ""),
-	main = rownames(data_eval)[ID])
-  axis(1, at = c(0, 5, 10))
-  if (ID == ID.list[1]) axis(2, at = c(0, 0.25, 0.5))
+    # Initializing plot
+    plot(NULL, type = "n", bty = "n", xaxt = "n", yaxt = "n",
+         ylim = c(-0.025, 0.5), xlim = c(-0.4,10),
+         xlab = "Precipitation amount in mm",
+	       ylab = ifelse(ID == ID.list[1], "Density", ""),
+	       main = rownames(data_eval)[ID])
+    axis(1, at = c(0, 5, 10))
+    if (ID == ID.list[1]) axis(2, at = c(0, 0.25, 0.5))
   
-  # Add predictive densities
-  lines(z, flogis.plot, col = col.logis)
-  lines(z, fnorm.plot, col = col.gauss)
-  lines(z, fstud.plot, col = col.stud)	  
+    # Add predictive densities
+    lines(z, flogis.plot, col = col.logis)
+    lines(z, fnorm.plot, col = col.gauss)
+    lines(z, fstud.plot, col = col.stud)	  
 
-  # Add segments for point mass at zero
-  p0.offset <- 0.2
-  segments(0, 0, 0, flogis.p0, col = col.logis, lwd = 3)	  
-  segments(-p0.offset, 0, -p0.offset, fnorm.p0, col = col.gauss, lwd = 3)	  
-  segments(-2*p0.offset, 0, -2*p0.offset, fstud.p0, col = col.stud, lwd = 3)
+    # Add segments for point mass at zero
+    p0.offset <- 0.2
+    segments(0, 0, 0, flogis.p0, col = col.logis, lwd = 3)	  
+    segments(-p0.offset, 0, -p0.offset, fnorm.p0, col = col.gauss, lwd = 3)	  
+    segments(-2*p0.offset, 0, -2*p0.offset, fstud.p0, col = col.stud, lwd = 3)
 	  
-  # Add observation
-  segments(data_eval$rain[ID], 0, data_eval$rain[ID], 0.5, lty = 2)
+    # Add observation
+    segments(data_eval$rain[ID], 0, data_eval$rain[ID], 0.5, lty = 2)
 	  
-  # Add ensemble forecast
-  ens.fc <- as.numeric(data_eval[, grep('^rainfc',names(RainIbk))][ID,])
-  for (j in 1:length(ens.fc)) {
-    segments(ens.fc[j], -0.025, ens.fc[j], -0.005)
+    # Add ensemble forecast
+    ens.fc <- as.numeric(data_eval[, grep('^rainfc',names(RainIbk))][ID,])
+    for (j in 1:length(ens.fc)) {
+      segments(ens.fc[j], -0.025, ens.fc[j], -0.005)
+    }
   }
-}
 
-# Add legend
-par(xpd = TRUE)
-legend(6.5, .45, bty = "n",
-  legend = c("cens. logistic", "cens. Gaussian", "cens. Student's t"),
-  col = c("blue", "green3", "darkorange"),
-  lty = rep(1,3), ncol = 1)
+  # Add legend
+  par(xpd = TRUE)
+  legend(6.5, .45, bty = "n",
+         legend = c("cens. logistic", "cens. Gaussian", "cens. Student's t"),
+         col = c("blue", "green3", "darkorange"),
+         lty = rep(1,3), ncol = 1)
+} 
 
 ## ----Computing-scores-Gauss-----------------------------------------
-obs <- data_eval$rain
-gauss_crps <- crps(obs, family = "cnorm", location = gauss_mu, 
-  scale = gauss_sc, lower = 0, upper = Inf)
-ens_crps <- crps_sample(obs, dat = as.matrix(ens_fc))
+if (use_crch){
+  obs <- data_eval$rain
+  gauss_crps <- crps(obs, family = "cnorm", location = gauss_mu, 
+                     scale = gauss_sc, lower = 0, upper = Inf)
+  ens_crps <- crps_sample(obs, dat = as.matrix(ens_fc))
+} 
 
 ## ----Computing-scores-logis-stud, echo=FALSE------------------------
-logis_crps <- crps(obs, family = "clogis", location = logis_mu, 
-scale = logis_sc, lower = 0, upper = Inf)
-stud_crps <- crps(obs, family = "ct", df = stud_df, location = stud_mu, 
-scale = stud_sc, lower = 0, upper = Inf)
+if (use_crch){
+  logis_crps <- crps(obs, family = "clogis", location = logis_mu, 
+                     scale = logis_sc, lower = 0, upper = Inf)
+  stud_crps <- crps(obs, family = "ct", df = stud_df, location = stud_mu, 
+                    scale = stud_sc, lower = 0, upper = Inf)
+} 
 
 ## ----Calculating-average-scores-------------------------------------
-scores <- data.frame(CRCHlogis = logis_crps, CRCHgauss = gauss_crps,
-  CRCHstud = stud_crps, Ensemble = ens_crps)
-sapply(scores, mean)
+if (use_crch){
+  scores <- data.frame(CRCHlogis = logis_crps, CRCHgauss = gauss_crps,
+                       CRCHstud = stud_crps, Ensemble = ens_crps)
+  sapply(scores, mean)
+} 
 
 ## ----Subsection-Bayesian-forecasts-of-US-GDP-growth-rate, echo=FALSE----
 
