@@ -11,7 +11,7 @@ es_sample(y, dat, w = NULL)
 
 mmds_sample(y, dat, w = NULL)
 
-vs_sample(y, dat, w_vs = NULL, p = 0.5)
+vs_sample(y, dat, w = NULL, w_vs = NULL, p = 0.5)
 }
 \arguments{
 \item{y}{realized values (numeric vector of length d).}
@@ -135,6 +135,9 @@ Scheuerer, M. and T.M. Hamill (2015):
 `Variogram-based proper scoring rules for probabilistic forecasts of
 multivariate quantities',
 Monthly Weather Review, 143, 1321-1334. \doi{10.1175/mwr-d-14-00269.1}
+}
+\seealso{
+\code{\link{scores_sample_multiv_weighted}} for weighted versions of the scoring rules documented here.
 }
 \author{
 Maximiliane Graeter, Sebastian Lerch, Fabian Krueger

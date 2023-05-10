@@ -71,7 +71,7 @@ crps_sample(obs_n, dat = sample_nm)
 logs_sample(obs_n, dat = sample_nm)
 
 ## ----Simulated-score-example-2--------------------------------------
-R <- 500
+R <- 200
 M <- 5e3
 mgrid <- exp(seq(log(50), log(M), length.out = 51))
 crps_approx <- matrix(NA, nrow = R, ncol = length(mgrid))
@@ -278,7 +278,7 @@ data_eval <- subset(gdp, vint == "2015Q1" & grepl("2014", dt))
 
 ## ----Sampling-MCMC-forecast-parameters------------------------------
 h <- 4
-m <- 20000
+m <- 5000
 fc_params <- ar_ms(data_train$val, forecast_periods = h, n_rep = m)
 
 ## ----Regularize-forecast-parameter-data-format----------------------
