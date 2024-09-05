@@ -10,48 +10,20 @@
 \alias{owvs_sample}
 \title{Weighted Multivariate Scoring Rules for Simulated Forecast Distributions (experimental)}
 \usage{
-twes_sample(
-  y,
-  dat,
-  a = -Inf,
-  b = Inf,
-  chain_func = function(x) pmin(pmax(x, a), b),
-  w = NULL
-)
+twes_sample(y, dat, a = -Inf, b = Inf, chain_func = NULL, w = NULL)
 
-owes_sample(
-  y,
-  dat,
-  a = -Inf,
-  b = Inf,
-  weight_func = function(x) as.numeric(all(x > a & x < b)),
-  w = NULL
-)
+owes_sample(y, dat, a = -Inf, b = Inf, weight_func = NULL, w = NULL)
 
-twmmds_sample(
-  y,
-  dat,
-  a = -Inf,
-  b = Inf,
-  chain_func = function(x) pmin(pmax(x, a), b),
-  w = NULL
-)
+twmmds_sample(y, dat, a = -Inf, b = Inf, chain_func = NULL, w = NULL)
 
-owmmds_sample(
-  y,
-  dat,
-  a = -Inf,
-  b = Inf,
-  weight_func = function(x) as.numeric(all(x > a & x < b)),
-  w = NULL
-)
+owmmds_sample(y, dat, a = -Inf, b = Inf, weight_func = NULL, w = NULL)
 
 twvs_sample(
   y,
   dat,
   a = -Inf,
   b = Inf,
-  chain_func = function(x) pmin(pmax(x, a), b),
+  chain_func = NULL,
   w = NULL,
   w_vs = NULL,
   p = 0.5
@@ -62,7 +34,7 @@ owvs_sample(
   dat,
   a = -Inf,
   b = Inf,
-  weight_func = function(x) as.numeric(all(x > a & x < b)),
+  weight_func = NULL,
   w = NULL,
   w_vs = NULL,
   p = 0.5
@@ -291,12 +263,17 @@ twvs_sample(y = obs, dat = sample_fc, chain_func = chain_func)
 
 }
 \references{
+Allen, S. (2024): 
+`Weighted scoringRules: Emphasising Particular Outcomes when Evaluating Probabilistic Forecasts', 
+\emph{Journal of Statistical Software}.
+\doi{10.18637/jss.v110.i08}
+
 \emph{Threshold-weighted scores}
 
-Allen, S., Ginsbourger, D. and J. Ziegel (2022):
-`Evaluating forecasts for high-impact events using transformed kernel scores',
-arXiv preprint arXiv:2202.12732. 
-\doi{10.48550/arXiv.2202.12732}
+Allen, S., Ginsbourger, D. and J. Ziegel (2023): 
+`Evaluating forecasts for high-impact events using transformed kernel scores', 
+\emph{SIAM/ASA Journal on Uncertainty Quantification} 11, 906-940.
+\doi{10.1137/22M1532184}
 
 \emph{Outcome-weighted scores:}
  
@@ -306,7 +283,7 @@ Holzmann, H. and B. Klar (2017):
 \doi{10.1214/17-AOAS1088}
 }
 \seealso{
-\link{scores_sample_multiv} for standard (un-weighted) scores based on simulated multivariate forecast distributions. \link{scores_sample_univ_weighted} for weighted scores based on simulated univariate forecast distributions
+\link{scores_sample_multiv} for standard (unweighted) scores based on simulated multivariate forecast distributions. \link{scores_sample_univ_weighted} for weighted scores based on simulated univariate forecast distributions
 }
 \author{
 Sam Allen

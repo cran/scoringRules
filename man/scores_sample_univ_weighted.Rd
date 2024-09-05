@@ -12,7 +12,7 @@ twcrps_sample(
   dat,
   a = -Inf,
   b = Inf,
-  chain_func = function(x) pmin(pmax(x, a), b),
+  chain_func = NULL,
   w = NULL,
   show_messages = TRUE
 )
@@ -22,7 +22,7 @@ owcrps_sample(
   dat,
   a = -Inf,
   b = Inf,
-  weight_func = function(x) as.numeric(x > a & x < b),
+  weight_func = NULL,
   w = NULL,
   show_messages = TRUE
 )
@@ -175,8 +175,10 @@ twcrps_sample(y = y, dat = sample_fc, a = 1)
 mu <- 0
 sigma <- 0.5
 weight_func <- function(x) pnorm(x, mu, sigma)
+# or weight_func <- get_weight_func("norm_cdf", mu, sigma)
 # a corresponding chaining function is
 chain_func <- function(x) (x - mu)*pnorm(x, mu, sigma) + (sigma^2)*dnorm(x, mu, sigma)
+# or chain_func <- get_weight_func("norm_cdf", mu, sigma, weight = FALSE)
 
 x <- seq(-2, 2, 0.01)
 plot(x, weight_func(x), type = "l") # positive outcomes are given higher weight
@@ -190,7 +192,9 @@ twcrps_sample(y = y, dat = sample_fc, chain_func = chain_func)
 
 # Example 2: a sigmoid (or logistic) weight function with location mu and scale sigma
 weight_func <- function(x) plogis(x, mu, sigma)
+# or weight_func <- get_weight_func("logis_cdf", mu, sigma)
 chain_func <- function(x) sigma*log(exp((x - mu)/sigma) + 1)
+# or chain_func <- get_weight_func("logis_cdf", mu, sigma, weight = FALSE)
 
 x <- seq(-2, 2, 0.01)
 plot(x, weight_func(x), type = "l") # positive outcomes are given higher weight
@@ -220,6 +224,11 @@ crps_sample(y = y, dat = sample_fc) - twcrps_sample(y = y, dat = sample_fc, a = 
 
 }
 \references{
+Allen, S. (2024): 
+`Weighted scoringRules: Emphasising Particular Outcomes when Evaluating Probabilistic Forecasts', 
+\emph{Journal of Statistical Software}.
+\doi{10.18637/jss.v110.i08}
+
 \emph{Threshold-weighted CRPS:}
 
 Gneiting, T. and R. Ranjan (2011): 
@@ -227,10 +236,10 @@ Gneiting, T. and R. Ranjan (2011):
 \emph{Journal of Business & Economic Statistics} 29, 411-422. 
 \doi{10.1198/jbes.2010.08110}
 
-Allen, S., Ginsbourger, D. and J. Ziegel (2022): 
+Allen, S., Ginsbourger, D. and J. Ziegel (2023): 
 `Evaluating forecasts for high-impact events using transformed kernel scores', 
-\emph{arXiv preprint} arXiv:2202.12732.
-\doi{10.48550/arXiv.2202.12732}
+\emph{SIAM/ASA Journal on Uncertainty Quantification} 11, 906-940.
+\doi{10.1137/22M1532184}
  
 \emph{Outcome-weighted CRPS:}
  
@@ -247,7 +256,7 @@ Diks, C., Panchenko, V. and D. Van Dijk (2011):
 \doi{10.1016/j.jeconom.2011.04.001}
 }
 \seealso{
-\link{scores_sample_univ} for standard (un-weighted) scores based on simulated forecast distributions. \link{scores_sample_multiv_weighted} for weighted scores based on simulated multivariate forecast distributions.
+\link{scores_sample_univ} for standard (unweighted) scores based on simulated forecast distributions. \link{scores_sample_multiv_weighted} for weighted scores based on simulated multivariate forecast distributions.
 }
 \author{
 Sam Allen

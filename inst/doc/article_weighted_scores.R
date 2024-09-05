@@ -114,12 +114,29 @@ weight_func <- function(x) prod(pnorm(x, mean = mu, sd = sigma))
 owes_sample(obs, sample_m, weight_func = weight_func)
 
 ## ----Custom-weight-function-example-3-------------------------------
+weight_func <- get_weight_func(name = "norm_cdf", mu = 0, sigma = 1)
+owcrps_sample(obs, sample_m, weight_func = weight_func)
+
+## ----Custom-weight-function-example-4-------------------------------
+weight_func <- get_weight_func(name = "norm_cdf", mu = mu, sigma = sigma)
+owes_sample(obs, sample_m, weight_func = weight_func)
+
+## ----Custom-weight-function-example-5-------------------------------
 chain_func <- function(x) (x - mu)*pnorm(x, mu, sigma) + 
   (sigma^2)*dnorm(x, mu, sigma)
 mu <- 0; sigma <- 1
 twcrps_sample(obs, sample_m, chain_func = chain_func)
 
 mu <- rnorm(d, 0, 0.5); sigma <- runif(d, 0.5, 1.5)
+twes_sample(obs, sample_m, chain_func = chain_func)
+
+## ----Custom-weight-function-example-6-------------------------------
+chain_func <- get_weight_func("norm_cdf", mu = 0, sigma = 1, 
+                              weight = FALSE)
+twcrps_sample(obs, sample_m, chain_func = chain_func)
+
+chain_func <- get_weight_func("norm_cdf", mu = mu, sigma = sigma, 
+                              weight = FALSE)
 twes_sample(obs, sample_m, chain_func = chain_func)
 
 ## ----Prepare-post-processing-example, echo=FALSE--------------------
@@ -215,9 +232,9 @@ if (use_crch){
 ## ----Post-processing-twcrps-custom-Gauss----------------------------
 if (use_crch){
   sigma <- 1
-  weight_func <- function(x) pnorm(x, mean = t, sd = sigma)
-  chain_func <- function(x) (x - t)*pnorm(x, mean = t, sd = sigma) + 
-    (sigma^2)*dnorm(x, mean = t, sd = sigma)
+  weight_func <- get_weight_func("norm_cdf", mu = t, sigma = sigma)
+  chain_func <- get_weight_func("norm_cdf", mu = t, sigma = sigma,
+                                weight = FALSE)
   gauss_twcrps <- twcrps_sample(obs, gauss_sample, chain_func = chain_func)
 }
 
